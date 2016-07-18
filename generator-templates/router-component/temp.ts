@@ -1,4 +1,4 @@
-import './<%= name %>.scss'
+import './<%= name %>.less'
 
 /**
  *  Component Definition

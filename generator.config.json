@@ -5,7 +5,7 @@
         "$log"
       ],
       "logger": "$log.getInstance('<%= captialCaseName %>', true);",
-      "scssCommonPath": "../../variables"
+      "lessCommonPath": "../../variables"
     }
   },
   "commonChild": {
@@ -14,7 +14,7 @@
         "$log"
       ],
       "logger": "$log.getInstance('<%= captialCaseName %>', true);",
-      "scssCommonPath": "../../../../variables"
+      "lessCommonPath": "../../../../variables"
     }
   },
   "feature": {
@@ -25,7 +25,7 @@
         "AppServices"
       ],
       "logger": "$log.getInstance('<%= captialCaseName %>', true);",
-      "scssCommonPath": "../../common/variables"
+      "lessCommonPath": "../../common/variables"
     }
   },
   "featureChild": {
@@ -36,7 +36,7 @@
         "AppServices"
       ],
       "logger": "$log.getInstance('<%= captialCaseName %>', true);",
-      "scssCommonPath": "../../../../common/variables"
+      "lessCommonPath": "../../../../common/variables"
     }
   },
   "bundles": [
@@ -53,7 +53,7 @@
       "templateFolder": "/generator-templates/component/",
       "files": [
         "temp.html",
-        "temp.scss",
+        "temp.less",
         "temp.ts",
         "temp.spec.ts"
       ]
@@ -63,7 +63,7 @@
       "templateFolder": "/generator-templates/router-component/",
       "files": [
         "temp.html",
-        "temp.scss",
+        "temp.less",
         "temp.ts",
         "temp.spec.ts"
       ]

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var _ = require('lodash');
 var vorpal = require('vorpal')();
 var fs = require('fs');
