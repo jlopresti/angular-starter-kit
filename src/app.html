@@ -1,0 +1,24 @@
+<div class="app">
+  <div ng-show="::$ctrl.AppServices.DevTools.performanceBarIsVisible">
+    <developer-bar></developer-bar>
+  </div>
+  <nav class="row" layout-align="center center">
+    <md-button class="md-raised md-primary load-button" ng-link="['Home']">
+      <md-icon md-font-set="material-icons" aria-label="home">home</md-icon>
+      Home
+    </md-button>
+    <md-button class="md-raised md-primary load-button" ng-link="['Thing', {id: 1}]">
+      <md-icon md-font-set="material-icons" aria-label="bug report">bug_report</md-icon>
+      Thing 1
+    </md-button>
+    <md-button class="md-raised md-primary load-button" ng-link="['Thing', {id: 2}]">
+      <md-icon md-font-set="material-icons" aria-label="bug report">bug_report</md-icon>
+      Thing 2
+    </md-button>
+    <md-button class="md-raised md-primary load-button" ng-link="['Thing', {id: 0}]">
+      <md-icon md-font-set="material-icons" aria-label="warning">warning</md-icon>
+      Non-Existant Route
+    </md-button>
+  </nav>
+  <ng-outlet></ng-outlet>
+</div>
