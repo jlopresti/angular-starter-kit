@@ -1,3 +1,8 @@
+var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
+var expect = chai.expect;
+
 // This is a page object, used to keep test code for the page cleaner
 // Can be shared between tests
 var AppView = function() {
@@ -19,7 +24,7 @@ describe('the application', function() {
     it('should have loaded', function() {
         view.get('http://localhost:8000/')
         var title = browser.getTitle()
-        expect(title).toEqual('Angular 1.5 Typescript Seed')
+        expect(title).to.eventually.equal('Angular 1.5 Typescript Seed')
     })
 
 })

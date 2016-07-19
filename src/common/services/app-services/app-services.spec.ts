@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Service::AppServices', () => {
     let AppServices: any
 
@@ -11,11 +13,11 @@ describe('Service::AppServices', () => {
 
     describe('::constructor()', () => {
       it('should have a $log service', () => {
-          expect(AppServices.$log).toBeDefined()
+          assert.isDefined(AppServices.$log);
       })
 
       it('should have DevTools', () => {
-        expect(AppServices.DevTools).toBeDefined()
+        assert.isDefined(AppServices.DevTools);
       })
     })
 

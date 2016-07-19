@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Service::AngularServices', () => {
   let AngularServices: any
 
@@ -11,43 +13,43 @@ describe('Service::AngularServices', () => {
 
   describe('::constructor()', () => {
     it('should have the $document service', () => {
-      expect(AngularServices.$document).toBeDefined()
+      assert.isDefined(AngularServices.$document);
     })
 
     it('should have the $filter service', () => {
-      expect(AngularServices.$filter).toBeDefined()
+      assert.isDefined(AngularServices.$filter);
     })
 
     it('should have the $http service', () => {
-      expect(AngularServices.$http).toBeDefined()
+      assert.isDefined(AngularServices.$http);
     })
 
     it('should have the $interval service', () => {
-      expect(AngularServices.$interval).toBeDefined()
+      assert.isDefined(AngularServices.$interval);
     })
 
     it('should have the $log service', () => {
-      expect(AngularServices.$log).toBeDefined()
+      assert.isDefined(AngularServices.$log);
     })
 
     it('should have the $location service', () => {
-      expect(AngularServices.$location).toBeDefined()
+      assert.isDefined(AngularServices.$location);
     })
 
     it('should have the $q service', () => {
-      expect(AngularServices.$q).toBeDefined()
+      assert.isDefined(AngularServices.$q);
     })
 
     it('should have the $rootScope service', () => {
-      expect(AngularServices.$rootScope).toBeDefined()
+      assert.isDefined(AngularServices.$rootScope);
     })
 
     it('should have the $timeout service', () => {
-      expect(AngularServices.$timeout).toBeDefined()
+      assert.isDefined(AngularServices.$timeout);
     })
 
     it('should have the $window service', () => {
-      expect(AngularServices.$window).toBeDefined()
+      assert.isDefined(AngularServices.$window);
     })
   })
 })

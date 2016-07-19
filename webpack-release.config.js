@@ -28,6 +28,10 @@ module.exports = {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
+          new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin("app.css"),

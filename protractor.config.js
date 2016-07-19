@@ -2,7 +2,7 @@ exports.config = {
   specs: [
       './src/e2e-tests/**/*.spec.js'
     ],
-  framework: 'jasmine2',
+  framework: 'mocha',
   directConnect: true,
   seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
   seleniumArgs: ['-browserTimeout=60'],
@@ -17,12 +17,11 @@ exports.config = {
     }
   },
   onPrepare: function() {
-    var SpecReporter = require('jasmine-spec-reporter');
-    jasmine.getEnv().addReporter(new SpecReporter({
-      displayStacktrace: true
-    }));
+
   },
-  jasmineNodeOpts: {
+  mochaOpts: {
+    reporter:'spec',
+    slow:3000,
     isVerbose: false,
     showColors: true,
     showTiming: false,

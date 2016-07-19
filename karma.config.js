@@ -5,7 +5,7 @@ webpackConfig.entry = ""; // you can override anything you want from the project
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', 'jasmine-matchers'],
+    frameworks: ['mocha', 'chai'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

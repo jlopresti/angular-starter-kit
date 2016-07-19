@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Component::<%= captialCaseName %>', () => {
 
   // component to run each test against

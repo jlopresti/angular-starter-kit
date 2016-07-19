@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Component::notFound', () => {
 
   // component to run each test against
@@ -26,7 +28,7 @@ describe('Component::notFound', () => {
 
   describe('::constructor()', () => {
     it('should contain a logger', () => {
-      expect(component.$log).toBeDefined()
+      assert.isDefined(component.$log);
     })
   })
 

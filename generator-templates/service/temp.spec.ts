@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Service::<%= captialCaseName %>', () => {
     let <%= captialCaseName %>
 

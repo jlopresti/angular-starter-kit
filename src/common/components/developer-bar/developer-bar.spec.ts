@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Component::DeveloperBar', () => {
 
   // component to run each test against
@@ -25,13 +27,13 @@ describe('Component::DeveloperBar', () => {
 
   describe('::constructor()', () => {
     it('should have a $log service ', () => {
-      expect(component.$log).toBeDefined()
+      assert.isDefined(component.$log);
     })
   })
 
   describe('::internals', () => {
     it('should have a list of links', () => {
-      expect(component.links).toBeDefined()
+      assert.isDefined(component.links);
     })
   })
 

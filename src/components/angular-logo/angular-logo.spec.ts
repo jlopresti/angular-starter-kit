@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Component::AngularLogo', () => {
 
   // run tests against component with binding data passed in
@@ -31,27 +33,27 @@ describe('Component::AngularLogo', () => {
 
     describe('::constructor()', () => {
       it('should have a $log service ', () => {
-        expect(component.$log).toBeDefined()
+        assert.isDefined(component.$log);
       })
 
       it('should contain AngularServices', () => {
-        expect(component.AngularServices).toBeDefined()
+        assert.isDefined(component.AngularServices);
       })
 
       it('should contain AppServices', () => {
-        expect(component.AppServices).toBeDefined()
+        assert.isDefined(component.AppServices);
       })
     })
 
     describe('::bindings', () => {
       it('should accept an logoImagePath binding', () => {
-        expect(component.logoImagePath).toBeDefined()
-        expect(component.logoImagePath).toEqual('assets/angularjs-logo.png')
+        assert.isDefined(component.logoImagePath);
+        expect(component.logoImagePath).to.equal('assets/angularjs-logo.png')
       })
 
       it('should accept a version binding', () => {
-        expect(component.version).toBeDefined()
-        expect(component.version).toEqual('1.x')
+        assert.isDefined(component.version);
+        expect(component.version).to.equal('1.x')
       })
     })
   })
@@ -84,13 +86,13 @@ describe('Component::AngularLogo', () => {
     describe('::bindings', () => {
         // confirm default bindings work as expected
         it('should contain a default value for logoImagePath', () => {
-          expect(component.logoImagePath).toBeDefined()
-          expect(component.logoImagePath).toEqual('assets/angularjs-logo.png')
+          assert.isDefined(component.logoImagePath);
+          expect(component.logoImagePath).to.equal('assets/angularjs-logo.png')
         })
 
         it('should contain a default value for version', () => {
-          expect(component.version).toBeDefined()
-          expect(component.version).toEqual(angular.version.full)
+          assert.isDefined(component.version);
+          expect(component.version).to.equal(angular.version.full)
         })
     })
   })

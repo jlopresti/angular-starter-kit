@@ -1,3 +1,5 @@
+import {assert, expect} from 'chai';
+
 describe('Component::App', () => {
 
   // component to run each test against
@@ -25,15 +27,15 @@ describe('Component::App', () => {
 
   describe('::constructor()', () => {
     it('should have a $log service ', () => {
-      expect(component.$log).toBeDefined()
+      assert.isDefined(component.$log, 'test');
     })
 
     it('should contain AngularServices', () => {
-      expect(component.AngularServices).toBeDefined()
+      assert.isDefined(component.AngularServices);
     })
 
     it('should contain AppServices', () => {
-      expect(component.AppServices).toBeDefined()
+      assert.isDefined(component.AppServices);
     })
   })
 
