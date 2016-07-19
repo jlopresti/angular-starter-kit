@@ -1,4 +1,4 @@
-import {assert, expect} from 'chai';
+import {assert} from 'chai';
 
 describe('Component::home', () => {
 
