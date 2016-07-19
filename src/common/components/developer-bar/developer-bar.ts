@@ -72,10 +72,7 @@ class DeveloperBarController {
     // links to render in the bar
     this.links = [
       { path: 'docs/typedoc/index.html', title: 'TypeDoc' },
-      { path: 'docs/sassdoc/index.html', title: 'SassDoc' },
-      { path: 'docs/coverage/index.html', title: 'Code Coverage' },
-      { path: 'https://material.angularjs.org/latest/', title: 'Angular Material' },
-      { path: 'https://design.google.com/icons/', title: 'Material Icons' },
+      { path: 'docs/coverage/index.html', title: 'Code Coverage' }
     ]
   }
 

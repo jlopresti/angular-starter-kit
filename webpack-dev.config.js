@@ -35,7 +35,7 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
-    extensions: ['', '.ts', '.js', '.json', '.scss']
+    extensions: ['', '.ts', '.js', '.json', '.less']
   },
   module: {
     preLoaders: [
@@ -51,6 +51,10 @@ module.exports = {
     },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+      new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),

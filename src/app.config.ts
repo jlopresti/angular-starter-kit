@@ -1,4 +1,4 @@
-AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider', '$mdIconProvider']
+AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider']
 
 /**
  * Config function for Angular on the main App component
@@ -9,7 +9,7 @@ AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider', '
  * @param {*} $compileProvider Angular Compiler Provider
  * @param {*} $mdIconProvider Angular Material Icon Provider
  */
-export default function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any, $mdIconProvider: any): void {
+export default function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any): void {
 
   // determine environment
   let isDevEnvironment: boolean = false
@@ -38,8 +38,5 @@ export default function AppConfig($locationProvider: any, logExProvider: any, $c
 
   // enable browser back button
   $locationProvider.html5Mode(false)
-
-  // set angualr material icon font set
-  $mdIconProvider.defaultFontSet('Material Icons')
  }
 

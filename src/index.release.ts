@@ -1,6 +1,6 @@
 // vendor imports
 import 'angular'
-import 'angular-material'
+import 'bootstrap/dist/js/bootstrap'
 import '@angular/router/angular1/angular_1_router'
 import 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive'
 // import 'ng-stats'

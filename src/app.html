@@ -3,22 +3,22 @@
     <developer-bar></developer-bar>
   </div>
   <nav class="row" layout-align="center center">
-    <md-button class="md-raised md-primary load-button" ng-link="['Home']">
-      <md-icon md-font-set="material-icons" aria-label="home">home</md-icon>
+    <button type="button" class="btn btn-primary" ng-link="['Home']">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
       Home
-    </md-button>
-    <md-button class="md-raised md-primary load-button" ng-link="['Thing', {id: 1}]">
-      <md-icon md-font-set="material-icons" aria-label="bug report">bug_report</md-icon>
+    </button>
+    <button type="button" class="btn btn-primary" ng-link="['Thing', {id: 1}]">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       Thing 1
-    </md-button>
-    <md-button class="md-raised md-primary load-button" ng-link="['Thing', {id: 2}]">
-      <md-icon md-font-set="material-icons" aria-label="bug report">bug_report</md-icon>
+    </button>
+    <button type="button" class="btn btn-primary" ng-link="['Thing', {id: 2}]">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
       Thing 2
-    </md-button>
-    <md-button class="md-raised md-primary load-button" ng-link="['Thing', {id: 0}]">
-      <md-icon md-font-set="material-icons" aria-label="warning">warning</md-icon>
+    </button>
+    <button type="button" class="btn btn-primary" ng-link="['Thing', {id: 0}]">
+      <span class="glyphicon glyphicon-warning" aria-hidden="true"></span>
       Non-Existant Route
-    </md-button>
+    </button>
   </nav>
   <ng-outlet></ng-outlet>
 </div>
