@@ -14,12 +14,6 @@ module.exports = [
         { test: /\.[ot]tf$/, loader: 'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]' },
         { test: /\.eot$/, loader: 'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' },
 
-  {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader"),
-  },
-  {
-    test: /\.less$/,
-    loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!less-loader?outputStyle=expanded")
-  }
+       { test: /\.less$/, loader: 'style!css!less' },
+       { test: /\.css$/, loader: 'style!css' }
 ];

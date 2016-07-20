@@ -16,6 +16,7 @@ export class Home implements ng.IComponentOptions {
    */
   public controller: Function = HomeController
 
+  public controllerAs: string = 'vm'
   /**
    * Template used with Component
    *
@@ -67,6 +68,11 @@ export class HomeController {
     this.$log.debug('constructor')
   }
 
+  public test: string = "yosdqsdoo"
+
+  public changeValue(): void{
+    this.test = "tezezkdjlfsjdsssstsss"
+  }
   /**
    * life cycle hook (road to ng2)
    */

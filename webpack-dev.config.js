@@ -4,6 +4,9 @@ var loaders = require("./webpack-loaders");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var autoprefixer = require('autoprefixer');
 var precss       = require('precss');
+var componentHotLoader = require.resolve('./loaders/component-loader');
+var serviceHotLoader = require.resolve('./loaders/service-loader');
+var jadeHotLoader = require.resolve('./loaders/jade-loader');
 
 var PATHS = {
   app: path.join(__dirname, 'src/index.dev.ts'),
@@ -25,13 +28,10 @@ module.exports = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js',
-    publicPath: PATHS.build,
+        filename: '[name].js',
     sourceMapFilename: '[name].js.map',
     chunkFilename: '[id].chunk.js',
-    devtoolModuleFilenameTemplate: function(info){
-      return "file:///"+info.absoluteResourcePath;
-    }
+    publicPath: '/'
   },
   resolve: {
     root: __dirname,
@@ -44,7 +44,10 @@ module.exports = {
         loader: "tslint"
       }
     ],
-    loaders: loaders
+    loaders: loaders,
+    postLoaders:[
+      { test: /\.html/, loader: jadeHotLoader }
+    ]
   },
       postcss: function () {
         return [autoprefixer, precss];
