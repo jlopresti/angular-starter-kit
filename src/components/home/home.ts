@@ -49,7 +49,6 @@ export class Home implements ng.IComponentOptions {
  * @class HomeController
  */
 export class HomeController {
-
   /**
    * $inject to make angular DI minifiication safe
    *
@@ -58,6 +57,7 @@ export class HomeController {
    */
   public static $inject: [string] = ['$log', 'AngularServices', 'AppServices']
 
+  public test: string = 'yosdqsdoo'
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
@@ -68,10 +68,8 @@ export class HomeController {
     this.$log.debug('constructor')
   }
 
-  public test: string = "yosdqsdoo"
-
-  public changeValue(): void{
-    this.test = "tezezkdjlfsjdsssstsss"
+  public changeValue(): void {
+    this.test = 'tezezkdjlfsjdsssstsss'
   }
   /**
    * life cycle hook (road to ng2)

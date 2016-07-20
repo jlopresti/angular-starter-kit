@@ -33,6 +33,13 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
   }
 
   /**
+   * Object name used in the view and containing controller scope
+   *
+   * @type {Object}
+   */
+  public controllerAs: string = 'vm'
+
+  /**
    *  router life cycle hook (road to ng2)
    */
   public $canActivate: any = (): boolean => {

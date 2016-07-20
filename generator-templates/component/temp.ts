@@ -30,6 +30,13 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
    */
   public bindings: { [binding: string]: string; } = {
   }
+
+  /**
+   * Object name used in the view and containing controller scope
+   *
+   * @type {Object}
+   */
+  public controllerAs: string = 'vm'
 }
 
 /**
