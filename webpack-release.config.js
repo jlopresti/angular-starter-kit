@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var loaders = require("./webpack-loaders");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var PATHS = {
   app: path.join(__dirname, 'src/index.dev.ts'),
@@ -50,6 +51,11 @@ module.exports = {
       compress: {
         warnings: true
       }
+    }),
+    new HtmlWebpackPlugin({
+      title: 'My App',
+      template: 'index.template.ejs',
+      filename: 'index.html'
     })
   ]
 };

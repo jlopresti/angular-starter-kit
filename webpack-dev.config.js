@@ -5,6 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var autoprefixer = require('autoprefixer');
 var precss       = require('precss');
 var jadeHotLoader = require.resolve('./loaders/jade-loader');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var PATHS = {
   app: path.join(__dirname, 'src/index.dev.ts'),
@@ -68,5 +69,10 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin("css/[name].css"),
+        new HtmlWebpackPlugin({
+      title: 'My App',
+      template: 'index.template.ejs',
+      filename: 'index.html'
+    })
   ]
 };
