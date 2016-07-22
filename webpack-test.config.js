@@ -24,7 +24,10 @@ module.exports = {
   },
   devtool: "source-map-inline",
   module: {
-    loaders: loaders,
+      loaders: loaders.concat([  { test: /\.less$/, loader: 'style!css!less', exclude:[/node_modules/] },
+  { test: /\.css$/, loader: 'style!css', exclude:[/node_modules/]  },
+  { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader"), include:[/node_modules/]  },
+  { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!less-loader?outputStyle=expanded"), include:[/node_modules/]  } ]),
     postLoaders: [
       {
         test: /^((?!\.spec\.ts).)*.ts$/,
