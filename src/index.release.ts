@@ -1,10 +1,3 @@
-// vendor imports
-import 'angular'
-import 'bootstrap/dist/js/bootstrap'
-import '@angular/router/angular1/angular_1_router'
-import 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive'
-// import 'ng-stats'
-
 // app css
 import './app.less'
 
@@ -18,7 +11,6 @@ import AppConfig from './app.config.ts'
 // top level angular module for app
 angular.module('app', [
   'ngComponentRouter',
-  'ngMaterial',
   'log.ex.uo',
   Common.name,
   Components.name,
