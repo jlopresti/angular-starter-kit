@@ -1,7 +1,10 @@
 var webpackConfig = require('./webpack-test.config.js');
 require('phantomjs-polyfill')
 webpackConfig.entry = ""; // you can override anything you want from the project webpack config
-
+if(process.env.KARMA_DEBUG){
+  //we remove istanbul from post loader when debugging because sourcemap doesn't work if activated
+  webpackConfig.module.postLoaders = null;
+}
 module.exports = function (config) {
   config.set({
     basePath: '',
@@ -10,7 +13,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['PhantomJS'],
+    browsers: [process.env.KARMA_DEBUG ? 'Chrome' : 'PhantomJS'],
     singleRun: true,
     autoWatchBatchDelay: 300,
     captureTimeout: 60000,
@@ -25,7 +28,7 @@ module.exports = function (config) {
       }
     },
     preprocessors: {
-      './src/index.test.ts': ['webpack'],
+      './src/**/*.ts': ['webpack', 'sourcemap'],
       './src/**/!(*.spec)+(.js)': ['coverage']
     },
     webpackMiddleware: {
@@ -38,7 +41,7 @@ module.exports = function (config) {
     },
     webpack: webpackConfig,
     reporters: [
-      'dots',
+      'spec',
       'coverage'
     ],
     coverageReporter: {
@@ -54,6 +57,8 @@ module.exports = function (config) {
           file: 'summary.text'
         }
       ]
-    }
+    },
+    plugins:[ 'karma-webpack', 'karma-chrome-launcher', 'karma-phantomjs-launcher', 'karma-mocha',
+    'karma-sourcemap-loader', 'karma-chai', 'karma-coverage', 'karma-spec-reporter']
   });
 };

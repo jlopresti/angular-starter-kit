@@ -4,7 +4,7 @@ var config = require('./webpack-dev.config');
 console.log(config.output.publicPath)
 
 new WebpackDevServer(webpack(config), {
-  contentBase: 'builds',  //location for base of dev server
+  contentBase: config.output.path,  //location for base of dev server
 	hot: true, //hot module replacement
 	historyApiFallback: true, //support html5 history api routers like ui-router
   noInfo: false,

@@ -4,7 +4,7 @@ var loaders = require("./webpack-loaders");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var PATHS = {
-  app: path.join(__dirname, 'src/index.index.ts'),
+  app: path.join(__dirname, 'src/index.dev.ts'),
   build: path.join(__dirname, 'builds'),
   dist: path.join(__dirname, 'dist')
 };
