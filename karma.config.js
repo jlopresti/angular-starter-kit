@@ -17,7 +17,7 @@ module.exports = function (config) {
     browserNoActivityTimeout: 100000,
     files: [
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
-      './src/test.ts'
+      './src/index.test.ts'
     ],
     babelPreprocessor: {
       options: {
@@ -25,7 +25,7 @@ module.exports = function (config) {
       }
     },
     preprocessors: {
-      './src/test.ts': ['webpack'],
+      './src/index.test.ts': ['webpack'],
       './src/**/!(*.spec)+(.js)': ['coverage']
     },
     webpackMiddleware: {

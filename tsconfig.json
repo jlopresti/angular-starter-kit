@@ -20,7 +20,7 @@
         "./src/**/*.ts",
         "!./src/**/*.spec.ts",
         "!./node_modules/**/*.ts",
-        "src/custom_typings.d.ts",
+        "typings/locales//custom_typings.d.ts",
         "typings/browser.d.ts"
     ],
   "compileOnSave": false,

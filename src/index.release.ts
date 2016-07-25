@@ -1,11 +1,8 @@
-// app css
-import './app.less'
-
 // app imports
 import Common from './common/common.ts'
 import Components from './components/components.ts'
 
-import {App} from './app.ts'
+import {App} from './components/app/app.ts'
 import AppConfig from './app.config.ts'
 
 // top level angular module for app

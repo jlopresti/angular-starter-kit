@@ -2,10 +2,12 @@
 // karma requires this when using phantomjs
 require('phantomjs-polyfill')
 
-// our apps starting point
-import './vendor.ts'
+// // our apps starting point
+import './bundles/vendor.ts'
 
-// our apps starting point
+import './bundles/vendor.dev.ts'
+
+// // our apps starting point
 import './index.dev.ts'
 
 // include angular mocks

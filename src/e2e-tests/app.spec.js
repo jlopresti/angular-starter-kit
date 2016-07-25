@@ -24,7 +24,7 @@ describe('the application', function() {
     it('should have loaded', function() {
         view.get('http://localhost:8000/')
         var title = browser.getTitle()
-        expect(title).to.eventually.equal('Angular 1.5 Typescript Seed')
+        expect(title).to.eventually.equal('My App')
     })
 
 })

@@ -28,7 +28,7 @@ describe('Component::<%= captialCaseName %>', () => {
 
   describe('::constructor()', () => {
     it('should contain a logger', () => {
-      expect(component.$log).toBeDefined()
+       assert.isDefined(component.$log)
     })
   })
 

@@ -13,7 +13,7 @@ describe('Service::<%= captialCaseName %>', () => {
 
     describe('::constructor()', () => {
       it('should have a $log service', ()=>{
-          expect(<%= captialCaseName %>.$log).toBeDefined()
+           assert.isDefined(<%= captialCaseName %>.$log)
       })
     })
 

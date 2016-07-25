@@ -20,7 +20,7 @@ describe('Component::AngularLogo', () => {
 
       // bindings data to compile component against
       let bindings: any = {
-        logoImagePath: 'assets/angularjs-logo.png',
+        logoImagePath: 'assets/img/angularjs-logo.png',
         version: '1.x',
       }
 
@@ -48,7 +48,7 @@ describe('Component::AngularLogo', () => {
     describe('::bindings', () => {
       it('should accept an logoImagePath binding', () => {
         assert.isDefined(component.logoImagePath);
-        expect(component.logoImagePath).to.equal('assets/angularjs-logo.png')
+        expect(component.logoImagePath).to.equal('assets/img/angularjs-logo.png')
       })
 
       it('should accept a version binding', () => {
@@ -87,7 +87,7 @@ describe('Component::AngularLogo', () => {
         // confirm default bindings work as expected
         it('should contain a default value for logoImagePath', () => {
           assert.isDefined(component.logoImagePath);
-          expect(component.logoImagePath).to.equal('assets/angularjs-logo.png')
+          expect(component.logoImagePath).to.equal('assets/img/angularjs-logo.png')
         })
 
         it('should contain a default value for version', () => {

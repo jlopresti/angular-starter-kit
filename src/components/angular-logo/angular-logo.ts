@@ -74,7 +74,7 @@ export class AngularLogoController {
   constructor(public $log: any, public AngularServices: any, public AppServices: any) {
     this.$log = $log.getInstance('AngularLogo', false)
     this.$log.debug('constructor')
-    this.logoImagePath = angular.isDefined(this.logoImagePath) ? this.logoImagePath : 'assets/angularjs-logo.png'
+    this.logoImagePath = angular.isDefined(this.logoImagePath) ? this.logoImagePath : 'assets/img/angularjs-logo.png'
     this.version = angular.isDefined(this.version) ? this.version : angular.version.full
   }
 
