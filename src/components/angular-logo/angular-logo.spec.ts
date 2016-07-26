@@ -35,14 +35,6 @@ describe('Component::AngularLogo', () => {
       it('should have a $log service ', () => {
         assert.isDefined(component.$log);
       })
-
-      it('should contain AngularServices', () => {
-        assert.isDefined(component.AngularServices);
-      })
-
-      it('should contain AppServices', () => {
-        assert.isDefined(component.AppServices);
-      })
     })
 
     describe('::bindings', () => {

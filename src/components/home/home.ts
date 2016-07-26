@@ -49,22 +49,15 @@ export class Home implements ng.IComponentOptions {
  * @class HomeController
  */
 export class HomeController {
-  /**
-   * $inject to make angular DI minifiication safe
-   *
-   * @static
-   * @type {Array<string>}
-   */
-  public static $inject: [string] = ['$log', 'AngularServices', 'AppServices']
 
   public test: string = 'yosdqsdoo'
+
   /**
    * @param {*} $log Angular Log Service
-   * @param {*} AngularServices Angular Services Convenience Service
-   * @param {*} AppServices App Services Convenience Service
    */
-  constructor(public $log: any, public AngularServices: any, public AppServices: any) {
-    this.$log = $log.getInstance('Home', false)
+  /*@ngInject*/
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('Home')
     this.$log.debug('constructor')
   }
 

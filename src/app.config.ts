@@ -11,14 +11,8 @@ AppConfig.$inject = ['$locationProvider', 'logExProvider', '$compileProvider']
  */
 export default function AppConfig($locationProvider: any, logExProvider: any, $compileProvider: any): void {
 
-  // determine environment
-  let isDevEnvironment: boolean = false
-  if (window.location.href.indexOf('localhost') > -1 || window.location.href.indexOf('127.0.0.1') >= 1) {
-    isDevEnvironment = true
-  }
-
   // debug and logging config
-  logExProvider.enableLogging(true, false)
+  logExProvider.enableLogging(__DEV__, false)
   logExProvider.useDefaultLogPrefix(false)
   logExProvider.overrideLogPrefix(function(className: string): string {
     let $injector: any = angular.injector(['ng'])
@@ -30,11 +24,7 @@ export default function AppConfig($locationProvider: any, logExProvider: any, $c
   })
 
   // disable angular debug info if app is not running locally. This increases performance in production
-  if (isDevEnvironment) {
-    $compileProvider.debugInfoEnabled(true)
-  } else {
-    $compileProvider.debugInfoEnabled(false)
-  }
+  $compileProvider.debugInfoEnabled(__DEV__)
 
   // enable browser back button
   $locationProvider.html5Mode(false)

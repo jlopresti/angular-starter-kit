@@ -45,22 +45,14 @@ export class Thing implements ng.IComponentOptions {
  */
 export class ThingController {
 
-  /**
-   * $inject to make angular DI minifiication safe
-   *
-   * @static
-   * @type {Array<string>}
-   */
-  public static $inject: [string] = ['$log', 'AngularServices', 'AppServices']
   public id: Number = 0
 
   /**
    * @param {*} $log Angular Log Service
-   * @param {*} AngularServices Angular Services Convenience Service
-   * @param {*} AppServices App Services Convenience Service
    */
-  constructor(public $log: any, public AngularServices: any, public AppServices: any) {
-    this.$log = $log.getInstance('Thing', false)
+  /*@ngInject*/
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('Thing')
     this.$log.debug('constructor')
   }
 

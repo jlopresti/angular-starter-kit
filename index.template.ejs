@@ -47,6 +47,9 @@
 </script>
 <% } %>
 
+<% for (var js in htmlWebpackPlugin.files.js) { %>
+<script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+<% } %>
 
 <% if (htmlWebpackPlugin.options.devServer) { %>
 <script src="<%= htmlWebpackPlugin.options.devServer%>/webpack-dev-server.js"></script>

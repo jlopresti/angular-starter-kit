@@ -49,20 +49,11 @@ export class NotFound implements ng.IComponentOptions {
 export class NotFoundController {
 
   /**
-   * $inject to make angular DI minifiication safe
-   *
-   * @static
-   * @type {Array<string>}
-   */
-  public static $inject: [string] = ['$log', 'AngularServices', 'AppServices']
-
-  /**
    * @param {*} $log Angular Log Service
-   * @param {*} AngularServices Angular Services Convenience Service
-   * @param {*} AppServices App Services Convenience Service
    */
-  constructor(public $log: any, public AngularServices: any, public AppServices: any) {
-    this.$log = $log.getInstance('NotFound', false)
+  /*@ngInject*/
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('NotFound')
     this.$log.debug('constructor')
   }
 

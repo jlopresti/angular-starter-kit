@@ -6,9 +6,9 @@ var autoprefixer = require('autoprefixer');
 var precss       = require('precss');
 var jadeHotLoader = require.resolve('./loaders/jade-loader');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+console.log( process.env.DEV_ENV)
 var PATHS = {
-  app: path.join(__dirname, 'src/index.dev.ts'),
+  app: path.join(__dirname, 'src/index.ts'),
   vendor: path.join(__dirname, 'src/bundles/vendor.ts'),
   vendorDev: path.join(__dirname, 'src/bundles/vendor.dev.ts'),
   build: path.join(__dirname, 'builds'),
@@ -49,10 +49,7 @@ module.exports = {
     loaders: loaders.concat([  { test: /\.less$/, loader: 'style!css?sourceMap!less?sourceMap', exclude:[/node_modules/] },
   { test: /\.css$/, loader: 'style!css?sourceMap', exclude:[/node_modules/]  },
   { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader"), include:[/node_modules/]  },
-  { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!less-loader?outputStyle=expanded"), include:[/node_modules/]  },
-    { test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg)$/, loader: 'url?limit=10000&name=fonts/[name].[ext]' },
-  { test: /\.(jpe?g|png|gif|ico)$/, loader: 'url?limit=10000&name=img/[name].[ext]' },
-  { test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file?name=fonts/[name].[ext]' } ]),
+  { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!less-loader?outputStyle=expanded"), include:[/node_modules/]  }]),
     postLoaders:[
       { test: /\.html/, loader: jadeHotLoader }
     ]
@@ -77,6 +74,9 @@ module.exports = {
       title: 'My App',
       template: 'index.template.ejs',
       filename: 'index.html'
+    }),
+    new webpack.DefinePlugin({
+      '__DEV__': process.env.DEV_ENV || false
     })
   ]
 };

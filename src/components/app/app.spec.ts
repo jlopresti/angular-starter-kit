@@ -29,14 +29,6 @@ describe('Component::App', () => {
     it('should have a $log service ', () => {
       assert.isDefined(component.$log, 'test');
     })
-
-    it('should contain AngularServices', () => {
-      assert.isDefined(component.AngularServices);
-    })
-
-    it('should contain AppServices', () => {
-      assert.isDefined(component.AppServices);
-    })
   })
 
 })

@@ -11,7 +11,7 @@ export class AppServices {
    * @param {$log} $log - Angular logging Service.
    */
   constructor(public $log: any, public DevTools: any) {
-    this.$log = $log.getInstance('AppServices', false)
+    this.$log = $log.getInstance('AppServices')
     this.$log.debug('constructor')
   }
 

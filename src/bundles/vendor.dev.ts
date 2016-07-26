@@ -1,1 +1,1 @@
-import 'ng-stats'
+import 'angular-mocks'

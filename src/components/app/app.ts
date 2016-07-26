@@ -45,20 +45,11 @@ export class App implements ng.IComponentOptions {
 export class AppController {
 
   /**
-   * $inject to make angular DI minifiication safe
-   *
-   * @static
-   * @type {Array<string>}
-   */
-  public static $inject: Array<string> = ['$log', 'AngularServices', 'AppServices']
-
-  /**
    * @param {*} $log Angular Log Service
-   * @param {*} angularServices Angular Services Convenience Service
-   * @param {*} appServices App Services Convenience Service
    */
-  constructor(public $log: any, public AngularServices: any, public AppServices: any) {
-    this.$log = $log.getInstance('AppController', false)
+  /*@ngInject*/
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('AppController')
     this.$log.debug('constructor')
   }
 

@@ -20,9 +20,7 @@
   "feature": {
     "data": {
       "di": [
-        "$log",
-        "AngularServices",
-        "AppServices"
+        "$log"
       ],
       "logger": "$log.getInstance('<%= captialCaseName %>', true);",
       "lessCommonPath": "../../common/variables"
@@ -31,9 +29,7 @@
   "featureChild": {
     "data": {
       "di": [
-        "$log",
-        "AngularServices",
-        "AppServices"
+        "$log"
       ],
       "logger": "$log.getInstance('<%= captialCaseName %>', true);",
       "lessCommonPath": "../../../../common/variables"

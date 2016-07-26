@@ -43,14 +43,6 @@ export class AngularLogo implements ng.IComponentOptions {
 export class AngularLogoController {
 
   /**
-   * $inject to make angular DI minifiication safe
-   *
-   * @static
-   * @type {Array<string>}
-   */
-  public static $inject: Array<string> = ['$log', 'AngularServices', 'AppServices']
-
-  /**
    * image path to a logo asset
    *
    * @private
@@ -68,11 +60,10 @@ export class AngularLogoController {
 
   /**
    * @param {*} $log Angular Log Service
-   * @param {*} AngularServices Angular Services Convenience Service
-   * @param {*} AppServices App Services Convenience Service
    */
-  constructor(public $log: any, public AngularServices: any, public AppServices: any) {
-    this.$log = $log.getInstance('AngularLogo', false)
+  /*@ngInject*/
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('AngularLogo')
     this.$log.debug('constructor')
     this.logoImagePath = angular.isDefined(this.logoImagePath) ? this.logoImagePath : 'assets/img/angularjs-logo.png'
     this.version = angular.isDefined(this.version) ? this.version : angular.version.full

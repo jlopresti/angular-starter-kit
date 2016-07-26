@@ -8,7 +8,7 @@ import './bundles/vendor.ts'
 import './bundles/vendor.dev.ts'
 
 // // our apps starting point
-import './index.dev.ts'
+import './index.ts'
 
 // include angular mocks
 import 'angular-mocks'

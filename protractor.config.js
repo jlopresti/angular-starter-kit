@@ -6,7 +6,7 @@ exports.config = {
   directConnect: true,
   seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
   seleniumArgs: ['-browserTimeout=60'],
-  chromeDriver: '.\\node_modules\\webdriver-manager\\selenium\\chromedriver.exe',
+  chromeDriver: '.\\node_modules\\webdriver-manager\\selenium\\chromedriver_2.22.exe',
   getPageTimeout: 10000,
   allScriptsTimeout: 10000,
   baseUrl: 'http://localhost:8000',
