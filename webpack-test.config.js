@@ -17,12 +17,15 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
-    extensions: ['', '.ts', '.js', '.json', '.less']
+    extensions: ['', '.ts', '.js', '.json', '.less'],
+    alias : {
+      assets : path.join(__dirname, 'src', 'assets')
+    }
   },
   resolveLoader: {
     modulesDirectories: ["node_modules"]
   },
-  devtool: "eval-source-map",
+  devtool: "inline-source-map",
   debug:true,
   module: {
       loaders: loaders.concat([  { test: /\.less$/, loader: 'style!css!less', exclude:[/node_modules/] },

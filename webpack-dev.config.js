@@ -37,7 +37,10 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
-    extensions: ['', '.ts', '.js', '.json', '.less']
+    extensions: ['', '.ts', '.js', '.json', '.less'],
+    alias : {
+      assets : path.join(__dirname, 'src', 'assets')
+    }
   },
   module: {
     preLoaders: [
@@ -72,8 +75,10 @@ module.exports = {
     new ExtractTextPlugin("css/[name].css"),
         new HtmlWebpackPlugin({
       title: 'My App',
-      template: 'index.template.ejs',
-      filename: 'index.html'
+      template: 'ejs!./index.template.ejs',
+      filename: 'index.html',
+      favicon : 'favicon.ico',
+      inject: false
     }),
     new webpack.DefinePlugin({
       '__DEV__': process.env.DEV_ENV || false

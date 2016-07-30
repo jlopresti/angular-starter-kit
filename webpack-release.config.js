@@ -25,7 +25,10 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
-    extensions: ['', '.ts', '.js', '.json', '.scss']
+    extensions: ['', '.ts', '.js', '.json', '.scss'],
+    alias : {
+      assets : path.join(__dirname, 'src', 'assets')
+    }
   },
   module: {
     loaders: loaders.concat(

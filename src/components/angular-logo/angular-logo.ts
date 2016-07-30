@@ -48,7 +48,7 @@ export class AngularLogoController {
    * @private
    * @type {string}
    */
-  private logoImagePath: string
+  private logoImagePath: any
 
   /**
    * semantic version to display beneath the logo
@@ -65,7 +65,7 @@ export class AngularLogoController {
   constructor(public $log: any) {
     this.$log = $log.getInstance('AngularLogo')
     this.$log.debug('constructor')
-    this.logoImagePath = angular.isDefined(this.logoImagePath) ? this.logoImagePath : 'assets/img/angularjs-logo.png'
+    this.logoImagePath = angular.isDefined(this.logoImagePath) ? this.logoImagePath : require('assets/img/angularjs-logo.png')
     this.version = angular.isDefined(this.version) ? this.version : angular.version.full
   }
 
