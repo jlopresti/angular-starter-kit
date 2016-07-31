@@ -1,0 +1,8 @@
+<!-- Nav tabs -->
+<ul class="nav nav-tabs tans" role="tablist">
+  <li role="presentation" ng-repeat="pane in vm.panes" ng-class="{ active: pane.selected }" ng-click="vm.onTabChanged( pane )">
+    <a ng-href="#{{pane.tabId}}" role="tab" aria-controls="{{pane.tabId}}" data-toggle="tab">{{pane.title }}</a>
+  </li>
+</ul>
+<ng-transclude></ng-transclude>
+

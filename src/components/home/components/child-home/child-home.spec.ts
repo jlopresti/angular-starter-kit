@@ -1,9 +1,9 @@
-import {assert} from 'chai';
+import {assert, expect} from 'chai';
 
-describe('Component::Thing', () => {
+describe('Component::ChildHome', () => {
 
   // component to run each test against
-  let component: any;
+  let component: any
 
   // load app module so we can access everything
   beforeEach(window.module('app'))
@@ -20,7 +20,7 @@ describe('Component::Thing', () => {
     let bindings: any = {}
 
     // generate component with angular.mocks helper service
-    component = $componentController('thing', locals, bindings)
+    component = $componentController('childHome', locals, bindings)
 
     // trigger init on component, $componentController doesn't currently
     component.$onInit()
@@ -28,7 +28,7 @@ describe('Component::Thing', () => {
 
   describe('::constructor()', () => {
     it('should contain a logger', () => {
-      assert.isDefined(component.$log);
+       assert.isDefined(component.$log)
     })
   })
 

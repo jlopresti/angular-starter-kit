@@ -1,27 +1,27 @@
-import './<%= name %>.less'
+import './tabs.less'
 
 /**
  *  Component Definition
  *
  * @export
- * @class <%= captialCaseName %>
+ * @class Tabs
  * @implements {ng.IComponentOptions}
  */
-export class <%= captialCaseName %> implements ng.IComponentOptions {
+export class Tabs implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = <%= captialCaseName %>Controller
+  public controller: Function = TabsController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./<%= name %>.html').toString()
+  public template: string = require('./tabs.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -29,7 +29,8 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
-    $router: '<'
+    selected: '@',
+    tabChanged: '&'
   }
 
   /**
@@ -39,21 +40,20 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
    */
   public controllerAs: string = 'vm'
 
-  /**
-   *  router life cycle hook (road to ng2)
-   */
-  public $canActivate: any = (): boolean => {
-    return true
-  }
+  public transclude: boolean =  true
 }
 
 /**
- * <%= captialCaseName %> - Controller
+ * Tabs - Controller
  *
  * @export
- * @class <%= captialCaseName %>Controller
+ * @class TabsController
  */
-export class <%= captialCaseName %>Controller {
+export class TabsController {
+
+  public panes: Array<any> = []
+  private selected: string
+  private tabChanged: (value: any) => void
 
   /**
    * @param {*} $log Angular Log Service
@@ -61,8 +61,8 @@ export class <%= captialCaseName %>Controller {
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(<%= params %>) {
-    this.$log = <%= logger %>
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('Tabs');
     this.$log.debug('constructor')
   }
 
@@ -81,6 +81,18 @@ export class <%= captialCaseName %>Controller {
    */
   public $onChanges(changesObj: any): void {
     this.$log.debug('onChanges', changesObj)
+    if (changesObj.selected) {
+      this.selected = changesObj.selected.currentValue;
+      this.invalidateTabSelection()
+    }
+  }
+
+  private invalidateTabSelection(): void {
+     angular.forEach(this.panes, (panel) => {
+      if (this.selected === panel.tabId) {
+        this.select( panel );
+      }
+    });
   }
 
   /**
@@ -100,58 +112,27 @@ export class <%= captialCaseName %>Controller {
    */
   public $postLink(): void {
     this.$log.debug('postLink')
+    if (this.panes.length === 1) {
+        this.select(this.panes[0] );
+    }
   }
 
-
-  /**
-   * Router Life Cycle Hooks
-   */
-
-  /**
-   * @param {toRoute} transition to route information obj
-   * @param {fromRoute} transition from route information obj
-   *
-   * Called by the Router at the end of a successful navigation.
-   * Only one of $routerOnActivate and $routerOnReuse will be called depending upon the result of a call to $routerCanReuse.
-   * NOTE: By returning a promise from $routerOnActivate() we can delay the activation of the Route until the data have arrived successfully.
-   * This is similar to how a resolve works in ngRoute.
-   *
-   */
-  public $routerOnActivate(toRoute: any, fromRoute: any): void {
-    this.$log.debug('$routerOnActivate', toRoute, fromRoute)
+  public onTabChanged(pane: any): void{
+    this.tabChanged({value:pane.tabId})
+    this.select( pane );
   }
 
-  /**
-   * @param {toRoute} transition to route information obj
-   * @param {fromRoute} transition from route information obj
-   *
-   * Called by the Router at the end of a successful navigation.
-   * Only one of $routerOnActivate and $routerOnReuse will be called depending upon the result of a call to $routerCanReuse.
-   */
-  public $routerOnReuse(toRoute: any, fromRoute: any): void {
-    this.$log.debug('$routeOnReuse', toRoute, fromRoute)
+  private select(pane): void {
+    angular.forEach(this.panes, function(panel) {
+      panel.hide();
+    });
+    pane.show();
   }
 
-  /**
-   * Called by the Router to determine if a Component can be removed as part of a navigation.
-   */
-  public $routerCanDeactivate(): boolean {
-    this.$log.debug('$routerCanDeactivate', arguments)
-    return true
-  }
-
-  /**
-   * Called by the Router before destroying a Component as part of a navigation.
-   */
-  public $routerOnDeactivate(): void {
-    this.$log.debug('$routerOnDeactivate', arguments)
-  }
-
-  /**
-   * Called to determine whether a Component can be reused across Route Definitions that match the same type of Component, or whether to destroy and instantiate a new Component every time.
-   */
-  public $routerCanReuse(): boolean {
-    this.$log.debug('routerCanReuse')
-    return true
+  public addPane(pane): void {
+    this.panes.push( pane );
+    if (this.selected === pane.tabId) {
+      this.select( pane );
+    }
   }
 }

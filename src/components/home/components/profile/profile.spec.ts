@@ -1,6 +1,6 @@
-import {assert} from 'chai';
+import {assert, expect} from 'chai';
 
-describe('Component::notFound', () => {
+describe('Component::Profile', () => {
 
   // component to run each test against
   let component: any
@@ -20,7 +20,7 @@ describe('Component::notFound', () => {
     let bindings: any = {}
 
     // generate component with angular.mocks helper service
-    component = $componentController('notFound', locals, bindings)
+    component = $componentController('profile', locals, bindings)
 
     // trigger init on component, $componentController doesn't currently
     component.$onInit()
@@ -28,7 +28,7 @@ describe('Component::notFound', () => {
 
   describe('::constructor()', () => {
     it('should contain a logger', () => {
-      assert.isDefined(component.$log);
+       assert.isDefined(component.$log)
     })
   })
 

@@ -1,12 +1,7 @@
 // import app component classes
-import {AngularLogo} from './angular-logo/angular-logo.ts'
 import {Home} from './home/home.ts'
-import {Thing} from './thing/thing.ts'
-import {NotFound} from './not-found/not-found.ts'
+import HomeComponents from './home/components/components.ts'
 
 // bundle component classes into angular components
-export default angular.module('app.components', [])
+export default angular.module('app.components', [HomeComponents.name])
 .component('home', new Home())
-.component('thing', new Thing())
-.component('notFound', new NotFound())
-.component('angularLogo', new AngularLogo())

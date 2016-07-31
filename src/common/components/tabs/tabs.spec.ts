@@ -1,6 +1,6 @@
 import {assert, expect} from 'chai';
 
-describe('Component::Home', () => {
+describe('Component::Tabs', () => {
 
   // component to run each test against
   let component: any
@@ -20,7 +20,7 @@ describe('Component::Home', () => {
     let bindings: any = {}
 
     // generate component with angular.mocks helper service
-    component = $componentController('home', locals, bindings)
+    component = $componentController('tabs', locals, bindings)
 
     // trigger init on component, $componentController doesn't currently
     component.$onInit()
@@ -28,7 +28,7 @@ describe('Component::Home', () => {
 
   describe('::constructor()', () => {
     it('should contain a logger', () => {
-       assert.isDefined(component.$log)
+      assert.isDefined(component.$log)
     })
   })
 

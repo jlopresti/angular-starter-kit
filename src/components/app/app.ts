@@ -31,8 +31,7 @@ export class App implements ng.IComponentOptions {
 
   public $routeConfig: any = [
     {path: '/', name: 'Home', component: 'home', useAsDefault: true},
-    {path: '/thing/:id', name: 'Thing', component: 'thing'},
-    {path: '/**', name: 'NotFound', component: 'notFound' }
+    {path: '/home/...', name: 'HomeNamed', component: 'home'},
   ]
 }
 

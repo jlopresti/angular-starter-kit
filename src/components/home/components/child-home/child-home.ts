@@ -1,27 +1,27 @@
-import './<%= name %>.less'
+import './child-home.less'
 
 /**
  *  Component Definition
  *
  * @export
- * @class <%= captialCaseName %>
+ * @class ChildHome
  * @implements {ng.IComponentOptions}
  */
-export class <%= captialCaseName %> implements ng.IComponentOptions {
+export class ChildHome implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = <%= captialCaseName %>Controller
+  public controller: Function = ChildHomeController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./<%= name %>.html').toString()
+  public template: string = require('./child-home.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -48,12 +48,12 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
 }
 
 /**
- * <%= captialCaseName %> - Controller
+ * ChildHome - Controller
  *
  * @export
- * @class <%= captialCaseName %>Controller
+ * @class ChildHomeController
  */
-export class <%= captialCaseName %>Controller {
+export class ChildHomeController {
 
   /**
    * @param {*} $log Angular Log Service
@@ -61,8 +61,8 @@ export class <%= captialCaseName %>Controller {
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(<%= params %>) {
-    this.$log = <%= logger %>
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('ChildHome');
     this.$log.debug('constructor')
   }
 

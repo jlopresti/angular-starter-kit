@@ -1,27 +1,27 @@
-import './<%= name %>.less'
+import './profile.less'
 
 /**
  *  Component Definition
  *
  * @export
- * @class <%= captialCaseName %>
+ * @class Profile
  * @implements {ng.IComponentOptions}
  */
-export class <%= captialCaseName %> implements ng.IComponentOptions {
+export class Profile implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = <%= captialCaseName %>Controller
+  public controller: Function = ProfileController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./<%= name %>.html').toString()
+  public template: string = require('./profile.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -48,12 +48,12 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
 }
 
 /**
- * <%= captialCaseName %> - Controller
+ * Profile - Controller
  *
  * @export
- * @class <%= captialCaseName %>Controller
+ * @class ProfileController
  */
-export class <%= captialCaseName %>Controller {
+export class ProfileController {
 
   /**
    * @param {*} $log Angular Log Service
@@ -61,8 +61,8 @@ export class <%= captialCaseName %>Controller {
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(<%= params %>) {
-    this.$log = <%= logger %>
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('Profile');
     this.$log.debug('constructor')
   }
 

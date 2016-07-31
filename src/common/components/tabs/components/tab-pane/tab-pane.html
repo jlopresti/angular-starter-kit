@@ -1,0 +1,5 @@
+<div class="tab-content tab-pane">
+  <div role="tabpanel" ng-class="['tab-pane', { active: vm.selected }]" id="{{vm.tabId}}">
+      <ng-transclude ng-if="vm.isAlreadyLoaded"></ng-transclude>
+  </div>
+<div>

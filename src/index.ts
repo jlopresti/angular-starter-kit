@@ -9,6 +9,7 @@ import AppConfig from './app.config.ts'
 angular.module('app', [
   'ngComponentRouter',
   'log.ex.uo',
+  'ui.bootstrap',
   Common.name,
   Components.name,
 ])

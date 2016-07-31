@@ -6,7 +6,7 @@ var autoprefixer = require('autoprefixer');
 var precss       = require('precss');
 var jadeHotLoader = require.resolve('./loaders/jade-loader');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log( process.env.DEV_ENV)
+
 var PATHS = {
   app: path.join(__dirname, 'src/index.ts'),
   vendor: path.join(__dirname, 'src/bundles/vendor.ts'),

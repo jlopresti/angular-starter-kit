@@ -3,7 +3,7 @@ import 'angular'
 import '@angular/router/angular1/angular_1_router'
 import 'bootstrap/dist/js/bootstrap'
 import 'LogUnobtrusiveExtension/dist/log-ex-unobtrusive'
-
+import 'angular-ui-bootstrap/index'
 
 // vendor css imports
 import 'font-awesome/css/font-awesome.css';

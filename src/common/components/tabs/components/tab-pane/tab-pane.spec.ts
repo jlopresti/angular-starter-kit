@@ -1,10 +1,10 @@
 import {assert, expect} from 'chai';
 
-describe('Component::Home', () => {
+describe('Component::TabPane', () => {
 
   // component to run each test against
   let component: any
-
+  let addPaneSpy: Sinon.SinonSpy
   // load app module so we can access everything
   beforeEach(window.module('app'))
 
@@ -15,12 +15,18 @@ describe('Component::Home', () => {
     let locals: any = {
       $scope: $rootScope.$new()
     }
-
+    addPaneSpy = sinon.spy()
+    let tabsCtrl = $componentController('tabs',{ $scope: $rootScope.$new()}, {
+      addPane: addPaneSpy
+    })
     // bindings data to compile component against
-    let bindings: any = {}
+    let bindings: any = {
+      title: 'hello',
+      tabsCtrl: tabsCtrl
+    }
 
     // generate component with angular.mocks helper service
-    component = $componentController('home', locals, bindings)
+    component = $componentController('tabPane', locals, bindings)
 
     // trigger init on component, $componentController doesn't currently
     component.$onInit()
@@ -28,7 +34,15 @@ describe('Component::Home', () => {
 
   describe('::constructor()', () => {
     it('should contain a logger', () => {
-       assert.isDefined(component.$log)
+      assert.isDefined(component.$log)
+    })
+
+    it('should be added to tabs', () => {
+        expect(addPaneSpy).to.have.been.calledOnce
+    })
+
+    it('should be added to tabs', () => {
+        addPaneSpy.should.have.been.calledOnce
     })
   })
 
