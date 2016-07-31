@@ -71,7 +71,7 @@ export class <%= captialCaseName %>Controller {
    * The changesObj is a hash whose keys are the names of the bound properties that have changed, and the values are an object of the form { currentValue, previousValue, isFirstChange() }.
    * Use this hook to trigger updates within a component such as cloning the bound value to prevent accidental mutation of the outer value.
    */
-  public $onChanges(changesObj): void {
+  public $onChanges(changesObj: any): void {
     this.$log.debug('onChanges', changesObj)
   }
 

@@ -4,7 +4,7 @@
       "di": [
         "$log"
       ],
-      "logger": "$log.getInstance('<%= captialCaseName %>', true);",
+      "logger": "$log.getInstance('<%= captialCaseName %>');",
       "lessCommonPath": "../../variables"
     }
   },
@@ -13,7 +13,7 @@
       "di": [
         "$log"
       ],
-      "logger": "$log.getInstance('<%= captialCaseName %>', true);",
+      "logger": "$log.getInstance('<%= captialCaseName %>');",
       "lessCommonPath": "../../../../variables"
     }
   },
@@ -22,7 +22,7 @@
       "di": [
         "$log"
       ],
-      "logger": "$log.getInstance('<%= captialCaseName %>', true);",
+      "logger": "$log.getInstance('<%= captialCaseName %>');",
       "lessCommonPath": "../../common/variables"
     }
   },
@@ -31,7 +31,7 @@
       "di": [
         "$log"
       ],
-      "logger": "$log.getInstance('<%= captialCaseName %>', true);",
+      "logger": "$log.getInstance('<%= captialCaseName %>');",
       "lessCommonPath": "../../../../common/variables"
     }
   },

@@ -8,7 +8,7 @@ if(process.env.KARMA_DEBUG){
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'sinon', 'sinon-chai'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -59,6 +59,6 @@ module.exports = function (config) {
       ]
     },
     plugins:[ 'karma-webpack', 'karma-chrome-launcher', 'karma-phantomjs-launcher', 'karma-mocha',
-    'karma-sourcemap-loader', 'karma-chai', 'karma-coverage', 'karma-spec-reporter']
+    'karma-sourcemap-loader', 'karma-chai', 'karma-coverage', 'karma-spec-reporter', 'karma-sinon', 'karma-sinon-chai']
   });
 };

@@ -28,7 +28,7 @@ export class <%= captialCaseName %> implements ng.IComponentOptions {
    *
    * @type {Object}
    */
-  public bindings: Object = {
+  public bindings: { [binding: string]: string; } = {
     $router: '<'
   }
 
@@ -79,7 +79,7 @@ export class <%= captialCaseName %>Controller {
    * The changesObj is a hash whose keys are the names of the bound properties that have changed, and the values are an object of the form { currentValue, previousValue, isFirstChange() }.
    * Use this hook to trigger updates within a component such as cloning the bound value to prevent accidental mutation of the outer value.
    */
-  public $onChanges(changesObj): void {
+  public $onChanges(changesObj: any): void {
     this.$log.debug('onChanges', changesObj)
   }
 
@@ -151,7 +151,7 @@ export class <%= captialCaseName %>Controller {
    * Called to determine whether a Component can be reused across Route Definitions that match the same type of Component, or whether to destroy and instantiate a new Component every time.
    */
   public $routerCanReuse(): boolean {
-    this.log.debug('routerCanReuse')
+    this.$log.debug('routerCanReuse')
     return true
   }
 }
