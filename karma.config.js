@@ -44,6 +44,11 @@ module.exports = function (config) {
       'spec',
       'coverage'
     ],
+    client: {
+     mocha: {
+        reporter: 'html'
+      }
+   } ,
     coverageReporter: {
       reporters: [
         {
