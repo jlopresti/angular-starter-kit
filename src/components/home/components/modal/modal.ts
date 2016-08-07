@@ -1,26 +1,28 @@
-import './profile.less'
+import './modal.less'
+import {ModalTest} from '../modal-test/modal-test.ts'
+
 /**
  *  Component Definition
  *
  * @export
- * @class Profile
+ * @class Modal
  * @implements {ng.IComponentOptions}
  */
-export class Profile implements ng.IComponentOptions {
+export class Modal implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = ProfileController
+  public controller: Function = ModalController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./profile.html').toString()
+  public template: string = require('./modal.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -28,7 +30,6 @@ export class Profile implements ng.IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
-    $router: '<'
   }
 
   /**
@@ -37,36 +38,24 @@ export class Profile implements ng.IComponentOptions {
    * @type {Object}
    */
   public controllerAs: string = 'vm'
-
-  /**
-   *  router life cycle hook (road to ng2)
-   */
-  public $canActivate: any = (): boolean => {
-    return true
-  }
-
-  public $routeConfig: any = [
-    {path: '/', name: 'UsrDummy', component: 'user', useAsDefault:true},
-    {path: '/photo', name: 'Modal', component: 'modal'},
-  ]
 }
 
 /**
- * Profile - Controller
+ * Modal - Controller
  *
  * @export
- * @class ProfileController
+ * @class ModalController
  */
-export class ProfileController {
-
+export class ModalController {
+  public modal:angular.ui.bootstrap.IModalServiceInstance
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any) {
-    this.$log = $log.getInstance('Profile');
+  constructor(public $log: any,public $uibModal: angular.ui.bootstrap.IModalService) {
+    this.$log = $log.getInstance('Modal');
     this.$log.debug('constructor')
   }
 
@@ -76,17 +65,7 @@ export class ProfileController {
    */
   public $onInit(): void {
     this.$log.debug('onInit')
-    //  var modalInstance = $uibModal.open({
-    //   animation: $scope.animationsEnabled,
-    //   templateUrl: 'myModalContent.html',
-    //   controller: 'ModalInstanceCtrl',
-    //   size: size,
-    //   resolve: {
-    //     items: function () {
-    //       return $scope.items;
-    //     }
-    //   }
-    // });
+    this.modal = this.$uibModal.open(new ModalTest())
   }
 
   /**
@@ -117,11 +96,6 @@ export class ProfileController {
     this.$log.debug('postLink')
   }
 
-
-  /**
-   * Router Life Cycle Hooks
-   */
-
   /**
    * @param {toRoute} transition to route information obj
    * @param {fromRoute} transition from route information obj
@@ -134,6 +108,7 @@ export class ProfileController {
    */
   public $routerOnActivate(toRoute: any, fromRoute: any): void {
     this.$log.debug('$routerOnActivate', toRoute, fromRoute)
+    this.modal.dismiss('cancel')
   }
 
   /**
@@ -145,6 +120,7 @@ export class ProfileController {
    */
   public $routerOnReuse(toRoute: any, fromRoute: any): void {
     this.$log.debug('$routeOnReuse', toRoute, fromRoute)
+    this.modal.dismiss('cancel')
   }
 
   /**
@@ -160,6 +136,7 @@ export class ProfileController {
    */
   public $routerOnDeactivate(): void {
     this.$log.debug('$routerOnDeactivate', arguments)
+    this.modal.dismiss('cancel')
   }
 
   /**
@@ -167,6 +144,6 @@ export class ProfileController {
    */
   public $routerCanReuse(): boolean {
     this.$log.debug('routerCanReuse')
-    return true
+    return false
   }
 }

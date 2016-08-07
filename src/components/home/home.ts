@@ -50,6 +50,7 @@ export class Home implements ng.IComponentOptions {
     {path: '/', redirectTo: ['Child']},
     {path: '/child', name: 'Child', component: 'childHome', data: { equity:true}},
     {path: '/profile', name: 'Profile', component: 'profile'},
+    {path: '/profile/...', name: 'ProfileModal', component: 'profile'},
     {path: '/user', name: 'User', component: 'user'}
   ]
 }
@@ -66,11 +67,26 @@ export class HomeController {
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
+  public highchartsNG:any;
   /*@ngInject*/
   constructor(public $log: any, GreetingService: GreetingService) {
     this.$log = $log.getInstance('Home');
     this.$log.debug('constructor')
     this.$log.debug(GreetingService.getGreeting());
+    this.highchartsNG = {
+      options: {
+            chart: {
+                type: 'bar'
+            }
+        },
+        series: [{
+            data: [10, 15, 12, 8, 7]
+        }],
+        title: {
+            text: 'Hello'
+        },
+        loading: false
+    }
   }
 
   /**
@@ -107,6 +123,29 @@ export class HomeController {
    */
   public $postLink(): void {
     this.$log.debug('postLink')
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
   }
 
 

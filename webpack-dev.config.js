@@ -70,7 +70,8 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
-            'window.jquery': 'jquery'
+            'window.jquery': 'jquery',
+            Highcharts : 'highcharts'
         }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.bundle.js'),
     new webpack.NoErrorsPlugin(),
