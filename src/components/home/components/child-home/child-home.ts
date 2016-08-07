@@ -1,5 +1,5 @@
 import './child-home.less'
-
+import {StateComponentController} from '../../../../common/components/state-component/state-component'
 /**
  *  Component Definition
  *
@@ -32,6 +32,9 @@ export class ChildHome implements ng.IComponentOptions {
     $router: '<'
   }
 
+  public require: { [binding: string]: string; } = {
+    stateCtrl: '^state'
+  }
   /**
    * Object name used in the view and containing controller scope
    *
@@ -54,7 +57,8 @@ export class ChildHome implements ng.IComponentOptions {
  * @class ChildHomeController
  */
 export class ChildHomeController {
-
+public toto: number;
+public stateCtrl: StateComponentController;
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
@@ -62,8 +66,8 @@ export class ChildHomeController {
    */
   /*@ngInject*/
   constructor(public $log: any) {
-    this.$log = $log.getInstance('ChildHome');
-    this.$log.debug('constructor')
+      this.$log = $log.getInstance('ChildHome');
+      this.$log.debug('constructor')
   }
 
   /**
@@ -71,7 +75,17 @@ export class ChildHomeController {
    * Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
    */
   public $onInit(): void {
-    this.$log.debug('onInit')
+    let state = null;
+    if(this.stateCtrl){
+      state = this.stateCtrl.getState('child');
+    }
+
+    if(!state){
+      this.$log.debug('onInit')
+      this.toto = 20;
+    }else{
+      this.toto = state;
+    }
   }
 
   /**
@@ -89,6 +103,8 @@ export class ChildHomeController {
    */
   public $onDestroy(): void {
     this.$log.debug('onDestroy')
+    this.toto = 1000;
+    this.stateCtrl.addState('child', this.toto);
   }
 
   /**

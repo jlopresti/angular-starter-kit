@@ -16,7 +16,7 @@ var PATHS = {
 };
 
 module.exports = {
-  devtool: "source-map",
+  // devtool: "source-map",
   watch: true,
   cache: true,
   debug: true,
@@ -39,7 +39,8 @@ module.exports = {
     root: __dirname,
     extensions: ['', '.ts', '.js', '.json', '.less'],
     alias : {
-      assets : path.join(__dirname, 'src', 'assets')
+      assets : path.join(__dirname, 'src', 'assets'),
+      common : path.join(__dirname, 'src', 'common')
     }
   },
   module: {
@@ -61,6 +62,9 @@ module.exports = {
     return [autoprefixer, precss];
   },
   plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map',
+    }),
     new webpack.HotModuleReplacementPlugin(),
       new webpack.ProvidePlugin({
             $: 'jquery',

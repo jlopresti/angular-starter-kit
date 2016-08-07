@@ -1,58 +1,65 @@
-import './app.less'
+import './user.less'
+
 /**
- * Main Application - Component Definition
+ *  Component Definition
  *
  * @export
- * @class App
+ * @class User
  * @implements {ng.IComponentOptions}
  */
-export class App implements ng.IComponentOptions {
+export class User implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = AppController
+  public controller: Function = UserController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./app.html').toString()
+  public template: string = require('./user.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
    *
    * @type {Object}
    */
-  public bindings: { [binding: string]: string; } = {}
+  public bindings: { [binding: string]: string; } = {
+  }
 
-  public $routeConfig: any = [
-    {path: '/home/...', name: 'HomeNamed', component: 'home'},
-  ]
+  /**
+   * Object name used in the view and containing controller scope
+   *
+   * @type {Object}
+   */
+  public controllerAs: string = 'vm'
 }
 
 /**
- * App - Controller
+ * User - Controller
  *
  * @export
- * @class AppController
+ * @class UserController
  */
-export class AppController {
+export class UserController {
 
   /**
    * @param {*} $log Angular Log Service
+   * @param {*} AngularServices Angular Services Convenience Service
+   * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
   constructor(public $log: any) {
-    this.$log = $log.getInstance('AppController')
+    this.$log = $log.getInstance('User');
     this.$log.debug('constructor')
   }
 
   /**
-   * life cycle hooks
+   * life cycle hooks (road to ng2)
    * Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
    */
   public $onInit(): void {

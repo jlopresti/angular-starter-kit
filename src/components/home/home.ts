@@ -1,5 +1,5 @@
 import './home.less'
-
+import {GreetingService} from '../../common/services/provider/helloprovider.ts'
 /**
  *  Component Definition
  *
@@ -47,8 +47,10 @@ export class Home implements ng.IComponentOptions {
   }
 
   public $routeConfig: any = [
-    {path: '/child', name: 'Child', component: 'childHome'},
-    {path: '/profile', name: 'Profile', component: 'profile'}
+    {path: '/', redirectTo: ['Child']},
+    {path: '/child', name: 'Child', component: 'childHome', data: { equity:true}},
+    {path: '/profile', name: 'Profile', component: 'profile'},
+    {path: '/user', name: 'User', component: 'user'}
   ]
 }
 
@@ -59,16 +61,16 @@ export class Home implements ng.IComponentOptions {
  * @class HomeController
  */
 export class HomeController {
-
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any) {
+  constructor(public $log: any, GreetingService: GreetingService) {
     this.$log = $log.getInstance('Home');
     this.$log.debug('constructor')
+    this.$log.debug(GreetingService.getGreeting());
   }
 
   /**
@@ -157,6 +159,6 @@ export class HomeController {
    */
   public $routerCanReuse(): boolean {
     this.$log.debug('routerCanReuse', arguments)
-    return !arguments[0].terminal;
+    return true;
   }
 }

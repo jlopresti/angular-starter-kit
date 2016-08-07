@@ -1,58 +1,68 @@
-import './app.less'
+import './state-component.less'
+
 /**
- * Main Application - Component Definition
+ *  Component Definition
  *
  * @export
- * @class App
+ * @class StateComponent
  * @implements {ng.IComponentOptions}
  */
-export class App implements ng.IComponentOptions {
+export class StateComponent implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = AppController
+  public controller: Function = StateComponentController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./app.html').toString()
+  public template: string = require('./state-component.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
    *
    * @type {Object}
    */
-  public bindings: { [binding: string]: string; } = {}
-
-  public $routeConfig: any = [
-    {path: '/home/...', name: 'HomeNamed', component: 'home'},
-  ]
-}
-
-/**
- * App - Controller
- *
- * @export
- * @class AppController
- */
-export class AppController {
-
-  /**
-   * @param {*} $log Angular Log Service
-   */
-  /*@ngInject*/
-  constructor(public $log: any) {
-    this.$log = $log.getInstance('AppController')
-    this.$log.debug('constructor')
+  public bindings: { [binding: string]: string; } = {
   }
 
   /**
-   * life cycle hooks
+   * Object name used in the view and containing controller scope
+   *
+   * @type {Object}
+   */
+  public controllerAs: string = 'vm'
+
+  public transclude: boolean = true
+}
+
+/**
+ * StateComponent - Controller
+ *
+ * @export
+ * @class StateComponentController
+ */
+export class StateComponentController {
+
+  /**
+   * @param {*} $log Angular Log Service
+   * @param {*} AngularServices Angular Services Convenience Service
+   * @param {*} AppServices App Services Convenience Service
+   */
+  /*@ngInject*/
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('StateComponent');
+    this.$log.debug('constructor')
+    this.state = []
+  }
+
+  /**
+   * life cycle hooks (road to ng2)
    * Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
    */
   public $onInit(): void {
@@ -87,4 +97,12 @@ export class AppController {
     this.$log.debug('postLink')
   }
 
+  private state:any[]
+  public addState(key:string, data:any){
+      this.state[key] = data
+  }
+
+  public getState(key:string){
+      return this.state[key] || undefined;
+  }
 }

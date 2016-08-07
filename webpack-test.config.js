@@ -19,7 +19,8 @@ module.exports = {
     root: __dirname,
     extensions: ['', '.ts', '.js', '.json', '.less'],
     alias : {
-      assets : path.join(__dirname, 'src', 'assets')
+      assets : path.join(__dirname, 'src', 'assets'),
+      common : path.join(__dirname, 'src', 'common')
     }
   },
   resolveLoader: {
@@ -41,6 +42,10 @@ module.exports = {
     ]
   },
   plugins: [
+      new webpack.SourceMapDevToolPlugin({
+    filename: null, // if no value is provided the sourcemap is inlined
+    test: /\.(ts|js)($|\?)/i // process .js and .ts files only
+  }),
       new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

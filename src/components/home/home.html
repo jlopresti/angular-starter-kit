@@ -1,5 +1,11 @@
 <div class="home">
   <h1>home</h1>
 </div>
-<child-home></child-home>
-<ng-outlet></ng-outlet>
+<ul class="nav nav-tabs">
+  <li role="presentation" ng-class="{active:vm.$router._currentInstruction.urlPath === 'child'}"><a href="#" ng-link="['Child']">Child</a></li>
+  <li role="presentation" ng-class="{active:vm.$router._currentInstruction.urlPath === 'profile'}"><a href="#" ng-link="['Profile']">Profile</a></li>
+  <li role="presentation" ng-class="{active:vm.$router._currentInstruction.urlPath === 'user'}"><a href="#" ng-link="['User']">User</a></li>
+</ul>
+<state>
+  <ng-outlet></ng-outlet>
+</state>
