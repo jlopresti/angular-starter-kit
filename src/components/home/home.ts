@@ -48,11 +48,12 @@ export class Home implements ng.IComponentOptions {
 
   public $routeConfig: any = [
     {path: '/', redirectTo: ['Child']},
-    {path: '/child', name: 'Child', component: 'childHome', data: { equity:true}},
-    {path: '/profile', name: 'Profile', component: 'profile'},
-    {path: '/profile/...', name: 'ProfileModal', component: 'profile'},
-    {path: '/user', name: 'User', component: 'user'}
+    {path: '/child', name: 'Child', component: 'dummy'},
+    {path: '/profile', name: 'Profile', component: 'dump'},
+    {path: '/user', name: 'User', component: 'drum'}
   ]
+
+
 }
 
 /**
@@ -73,22 +74,10 @@ export class HomeController {
     this.$log = $log.getInstance('Home');
     this.$log.debug('constructor')
     this.$log.debug(GreetingService.getGreeting());
-    this.highchartsNG = {
-      options: {
-            chart: {
-                type: 'bar'
-            }
-        },
-        series: [{
-            data: [10, 15, 12, 8, 7]
-        }],
-        title: {
-            text: 'Hello'
-        },
-        loading: false
-    }
   }
-
+  public $canReuseCachedData(){
+    return false;
+  }
   /**
    * life cycle hooks (road to ng2)
    * Called on each controller after all the controllers on an element have been constructed and had their bindings initialized (and before the pre & post linking functions for the directives on this element).
@@ -123,29 +112,6 @@ export class HomeController {
    */
   public $postLink(): void {
     this.$log.debug('postLink')
-    $('#container').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Fruit Consumption'
-        },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [1, 0, 4]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
-        }]
-    });
   }
 
 

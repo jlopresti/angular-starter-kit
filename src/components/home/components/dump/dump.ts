@@ -1,27 +1,28 @@
-import './user.less'
+import './dump.less'
+import {DummyService} from '../../services/dummy/dummy.ts'
 
 /**
  *  Component Definition
  *
  * @export
- * @class User
+ * @class Dump
  * @implements {ng.IComponentOptions}
  */
-export class User implements ng.IComponentOptions {
+export class Dump implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = UserController
+  public controller: Function = DumpController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./user.html').toString()
+  public template: string = require('./dump.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -29,6 +30,7 @@ export class User implements ng.IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
+    $router: '<'
   }
 
   /**
@@ -37,24 +39,35 @@ export class User implements ng.IComponentOptions {
    * @type {Object}
    */
   public controllerAs: string = 'vm'
+
+  /**
+   *  router life cycle hook (road to ng2)
+   */
+  public $canActivate: any = (): boolean => {
+    return true
+  }
+
+   public $canReuseCachedData:any = () => {
+    return true;
+  }
 }
 
 /**
- * User - Controller
+ * Dump - Controller
  *
  * @export
- * @class UserController
+ * @class DumpController
  */
-export class UserController {
-
+export class DumpController {
+ public data: string
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any) {
-    this.$log = $log.getInstance('User');
+  constructor(public $log: any, public DummyService: DummyService) {
+    this.$log = $log.getInstance('Dump');
     this.$log.debug('constructor')
   }
 
@@ -64,6 +77,7 @@ export class UserController {
    */
   public $onInit(): void {
     this.$log.debug('onInit')
+    this.data = this.DummyService.getDump()
   }
 
   /**
@@ -94,4 +108,56 @@ export class UserController {
     this.$log.debug('postLink')
   }
 
+
+  /**
+   * Router Life Cycle Hooks
+   */
+
+  /**
+   * @param {toRoute} transition to route information obj
+   * @param {fromRoute} transition from route information obj
+   *
+   * Called by the Router at the end of a successful navigation.
+   * Only one of $routerOnActivate and $routerOnReuse will be called depending upon the result of a call to $routerCanReuse.
+   * NOTE: By returning a promise from $routerOnActivate() we can delay the activation of the Route until the data have arrived successfully.
+   * This is similar to how a resolve works in ngRoute.
+   *
+   */
+  public $routerOnActivate(toRoute: any, fromRoute: any): void {
+    this.$log.debug('$routerOnActivate', toRoute, fromRoute)
+  }
+
+  /**
+   * @param {toRoute} transition to route information obj
+   * @param {fromRoute} transition from route information obj
+   *
+   * Called by the Router at the end of a successful navigation.
+   * Only one of $routerOnActivate and $routerOnReuse will be called depending upon the result of a call to $routerCanReuse.
+   */
+  public $routerOnReuse(toRoute: any, fromRoute: any): void {
+    this.$log.debug('$routeOnReuse', toRoute, fromRoute)
+  }
+
+  /**
+   * Called by the Router to determine if a Component can be removed as part of a navigation.
+   */
+  public $routerCanDeactivate(): boolean {
+    this.$log.debug('$routerCanDeactivate', arguments)
+    return true
+  }
+
+  /**
+   * Called by the Router before destroying a Component as part of a navigation.
+   */
+  public $routerOnDeactivate(): void {
+    this.$log.debug('$routerOnDeactivate', arguments)
+  }
+
+  /**
+   * Called to determine whether a Component can be reused across Route Definitions that match the same type of Component, or whether to destroy and instantiate a new Component every time.
+   */
+  public $routerCanReuse(): boolean {
+    this.$log.debug('routerCanReuse')
+    return true
+  }
 }

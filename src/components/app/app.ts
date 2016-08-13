@@ -31,6 +31,7 @@ export class App implements ng.IComponentOptions {
 
   public $routeConfig: any = [
     {path: '/home/...', name: 'HomeNamed', component: 'home'},
+    {path: '/search', name: 'Search', component: 'search'},
   ]
 }
 

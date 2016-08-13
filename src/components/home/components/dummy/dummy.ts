@@ -1,26 +1,27 @@
-import './profile.less'
+import './dummy.less'
+import {DummyService} from '../../services/dummy/dummy.ts'
 /**
  *  Component Definition
  *
  * @export
- * @class Profile
+ * @class Dummy
  * @implements {ng.IComponentOptions}
  */
-export class Profile implements ng.IComponentOptions {
+export class Dummy implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = ProfileController
+  public controller: Function = DummyController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./profile.html').toString()
+  public template: string = require('./dummy.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -44,29 +45,24 @@ export class Profile implements ng.IComponentOptions {
   public $canActivate: any = (): boolean => {
     return true
   }
-
-  public $routeConfig: any = [
-    {path: '/', name: 'UsrDummy', component: 'user', useAsDefault:true},
-    {path: '/photo', name: 'Modal', component: 'modal'},
-  ]
 }
 
 /**
- * Profile - Controller
+ * Dummy - Controller
  *
  * @export
- * @class ProfileController
+ * @class DummyController
  */
-export class ProfileController {
-
+export class DummyController {
+  public data: string
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any) {
-    this.$log = $log.getInstance('Profile');
+  constructor(public $log: any, public DummyService: DummyService) {
+    this.$log = $log.getInstance('Dummy');
     this.$log.debug('constructor')
   }
 
@@ -76,17 +72,7 @@ export class ProfileController {
    */
   public $onInit(): void {
     this.$log.debug('onInit')
-    //  var modalInstance = $uibModal.open({
-    //   animation: $scope.animationsEnabled,
-    //   templateUrl: 'myModalContent.html',
-    //   controller: 'ModalInstanceCtrl',
-    //   size: size,
-    //   resolve: {
-    //     items: function () {
-    //       return $scope.items;
-    //     }
-    //   }
-    // });
+    this.data = this.DummyService.getDummy()
   }
 
   /**

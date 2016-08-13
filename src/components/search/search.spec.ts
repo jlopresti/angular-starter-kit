@@ -1,6 +1,6 @@
 import {assert, expect} from 'chai';
 
-describe('Component::ChildHome', () => {
+describe('Component::Search', () => {
 
   // component to run each test against
   let component: any
@@ -20,7 +20,7 @@ describe('Component::ChildHome', () => {
     let bindings: any = {}
 
     // generate component with angular.mocks helper service
-    component = $componentController('childHome', locals, bindings)
+    component = $componentController('search', locals, bindings)
 
     // trigger init on component, $componentController doesn't currently
     component.$onInit()

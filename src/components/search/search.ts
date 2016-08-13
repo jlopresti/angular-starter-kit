@@ -1,28 +1,27 @@
-import './modal.less'
-import {ModalTest} from '../modal-test/modal-test.ts'
+import './search.less'
 
 /**
  *  Component Definition
  *
  * @export
- * @class Modal
+ * @class Search
  * @implements {ng.IComponentOptions}
  */
-export class Modal implements ng.IComponentOptions {
+export class Search implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = ModalController
+  public controller: Function = SearchController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./modal.html').toString()
+  public template: string = require('./search.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -30,6 +29,7 @@ export class Modal implements ng.IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
+    $router: '<'
   }
 
   /**
@@ -38,24 +38,31 @@ export class Modal implements ng.IComponentOptions {
    * @type {Object}
    */
   public controllerAs: string = 'vm'
+
+  /**
+   *  router life cycle hook (road to ng2)
+   */
+  public $canActivate: any = (): boolean => {
+    return true
+  }
 }
 
 /**
- * Modal - Controller
+ * Search - Controller
  *
  * @export
- * @class ModalController
+ * @class SearchController
  */
-export class ModalController {
-  public modal:angular.ui.bootstrap.IModalServiceInstance
+export class SearchController {
+
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any,public $uibModal: angular.ui.bootstrap.IModalService) {
-    this.$log = $log.getInstance('Modal');
+  constructor(public $log: any) {
+    this.$log = $log.getInstance('Search');
     this.$log.debug('constructor')
   }
 
@@ -65,7 +72,6 @@ export class ModalController {
    */
   public $onInit(): void {
     this.$log.debug('onInit')
-    this.modal = this.$uibModal.open(new ModalTest())
   }
 
   /**
@@ -96,6 +102,11 @@ export class ModalController {
     this.$log.debug('postLink')
   }
 
+
+  /**
+   * Router Life Cycle Hooks
+   */
+
   /**
    * @param {toRoute} transition to route information obj
    * @param {fromRoute} transition from route information obj
@@ -108,7 +119,6 @@ export class ModalController {
    */
   public $routerOnActivate(toRoute: any, fromRoute: any): void {
     this.$log.debug('$routerOnActivate', toRoute, fromRoute)
-    this.modal.dismiss('cancel')
   }
 
   /**
@@ -120,7 +130,6 @@ export class ModalController {
    */
   public $routerOnReuse(toRoute: any, fromRoute: any): void {
     this.$log.debug('$routeOnReuse', toRoute, fromRoute)
-    this.modal.dismiss('cancel')
   }
 
   /**
@@ -136,7 +145,6 @@ export class ModalController {
    */
   public $routerOnDeactivate(): void {
     this.$log.debug('$routerOnDeactivate', arguments)
-    this.modal.dismiss('cancel')
   }
 
   /**
@@ -144,6 +152,6 @@ export class ModalController {
    */
   public $routerCanReuse(): boolean {
     this.$log.debug('routerCanReuse')
-    return false
+    return true
   }
 }

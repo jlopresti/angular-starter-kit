@@ -1,27 +1,28 @@
-import './state-component.less'
+import './drum.less'
+import {DummyService} from '../../services/dummy/dummy.ts'
 
 /**
  *  Component Definition
  *
  * @export
- * @class StateComponent
+ * @class Drum
  * @implements {ng.IComponentOptions}
  */
-export class StateComponent implements ng.IComponentOptions {
+export class Drum implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = StateComponentController
+  public controller: Function = DrumController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./state-component.html').toString()
+  public template: string = require('./drum.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -29,6 +30,7 @@ export class StateComponent implements ng.IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
+    $router: '<'
   }
 
   /**
@@ -38,27 +40,35 @@ export class StateComponent implements ng.IComponentOptions {
    */
   public controllerAs: string = 'vm'
 
-  public transclude: boolean = true
+  /**
+   *  router life cycle hook (road to ng2)
+   */
+  public $canActivate: any = (): boolean => {
+    return true
+  }
+
+   public $canReuseCachedData:any = () => {
+    return true;
+  }
 }
 
 /**
- * StateComponent - Controller
+ * Drum - Controller
  *
  * @export
- * @class StateComponentController
+ * @class DrumController
  */
-export class StateComponentController {
-
+export class DrumController {
+ public data: string
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any) {
-    this.$log = $log.getInstance('StateComponent');
+  constructor(public $log: any, public DummyService: DummyService) {
+    this.$log = $log.getInstance('Drum');
     this.$log.debug('constructor')
-    this.state = []
   }
 
   /**
@@ -67,6 +77,7 @@ export class StateComponentController {
    */
   public $onInit(): void {
     this.$log.debug('onInit')
+    this.data = this.DummyService.getDrum()
   }
 
   /**
@@ -97,12 +108,56 @@ export class StateComponentController {
     this.$log.debug('postLink')
   }
 
-  private state:any[]
-  public addState(key:string, data:any){
-      this.state[key] = data
+
+  /**
+   * Router Life Cycle Hooks
+   */
+
+  /**
+   * @param {toRoute} transition to route information obj
+   * @param {fromRoute} transition from route information obj
+   *
+   * Called by the Router at the end of a successful navigation.
+   * Only one of $routerOnActivate and $routerOnReuse will be called depending upon the result of a call to $routerCanReuse.
+   * NOTE: By returning a promise from $routerOnActivate() we can delay the activation of the Route until the data have arrived successfully.
+   * This is similar to how a resolve works in ngRoute.
+   *
+   */
+  public $routerOnActivate(toRoute: any, fromRoute: any): void {
+    this.$log.debug('$routerOnActivate', toRoute, fromRoute)
   }
 
-  public getState(key:string){
-      return this.state[key] || undefined;
+  /**
+   * @param {toRoute} transition to route information obj
+   * @param {fromRoute} transition from route information obj
+   *
+   * Called by the Router at the end of a successful navigation.
+   * Only one of $routerOnActivate and $routerOnReuse will be called depending upon the result of a call to $routerCanReuse.
+   */
+  public $routerOnReuse(toRoute: any, fromRoute: any): void {
+    this.$log.debug('$routeOnReuse', toRoute, fromRoute)
+  }
+
+  /**
+   * Called by the Router to determine if a Component can be removed as part of a navigation.
+   */
+  public $routerCanDeactivate(): boolean {
+    this.$log.debug('$routerCanDeactivate', arguments)
+    return true
+  }
+
+  /**
+   * Called by the Router before destroying a Component as part of a navigation.
+   */
+  public $routerOnDeactivate(): void {
+    this.$log.debug('$routerOnDeactivate', arguments)
+  }
+
+  /**
+   * Called to determine whether a Component can be reused across Route Definitions that match the same type of Component, or whether to destroy and instantiate a new Component every time.
+   */
+  public $routerCanReuse(): boolean {
+    this.$log.debug('routerCanReuse')
+    return true
   }
 }
