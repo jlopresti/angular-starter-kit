@@ -1,4 +1,4 @@
-<modal modal-created="vm.modalCreated(api)" modal-animation="bottom" modal-class="test">
+<modal modal-created="vm.modalCreated(api)" modal-class="popup-content" modal-animation="left" navigate-back-on-closing="true">
   <modal-header show-close="true">
     <h4 class="modal-title" id="myModalLabel1">Modal2 title</h4>
   </modal-header>
@@ -7,7 +7,3 @@
     <button type="button" class="btn btn-default" ng-click="vm.modalApi.close()">Close</button>
   </modal-footer>
 </modal>
-<div class="dump">
-  <h1>dump : {{::vm.data}}</h1>
-  <button ng-click="vm.openModal()">Open</button>
-</div>

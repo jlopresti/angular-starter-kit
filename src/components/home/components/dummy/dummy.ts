@@ -45,6 +45,12 @@ export class Dummy implements ng.IComponentOptions {
   public $canActivate: any = (): boolean => {
     return true
   }
+
+  public $routeConfig: any = [
+    {path: '/popup/...', name: 'Popup', component: 'popupHost'},
+    {path: '/toto', name: 'Popup6', component: 'popupContent'},
+    {path: '/', name: 'Popup1', component: 'drum'},
+  ]
 }
 
 /**

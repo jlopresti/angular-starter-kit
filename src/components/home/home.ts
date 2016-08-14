@@ -48,7 +48,8 @@ export class Home implements ng.IComponentOptions {
 
   public $routeConfig: any = [
     {path: '/', redirectTo: ['Child']},
-    {path: '/child', name: 'Child', component: 'dummy'},
+    // {path: '/child', name: 'Child', component: 'dummy'},
+    {path: '/child/...', name: 'Child2', component: 'dummy'},
     {path: '/profile', name: 'Profile', component: 'dump'},
     {path: '/user', name: 'User', component: 'drum'}
   ]

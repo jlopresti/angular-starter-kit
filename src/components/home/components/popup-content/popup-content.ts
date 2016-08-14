@@ -1,28 +1,27 @@
-import './dump.less'
-import {DummyService} from '../../services/dummy/dummy.ts'
+import './popup-content.less'
 
 /**
  *  Component Definition
  *
  * @export
- * @class Dump
+ * @class PopupContent
  * @implements {ng.IComponentOptions}
  */
-export class Dump implements ng.IComponentOptions {
+export class PopupContent implements ng.IComponentOptions {
 
   /**
    * Controller used with Component
    *
    * @type {Function}
    */
-  public controller: Function = DumpController
+  public controller: Function = PopupContentController
 
   /**
    * Template used with Component
    *
    * @type {string}
    */
-  public template: string = require('./dump.html').toString()
+  public template: string = require('./popup-content.html').toString()
 
   /**
    * Object containing pairs Directive Bindings for Component
@@ -46,28 +45,25 @@ export class Dump implements ng.IComponentOptions {
   public $canActivate: any = (): boolean => {
     return true
   }
-
-   public $canReuseCachedData:any = () => {
-    return true;
-  }
 }
 
 /**
- * Dump - Controller
+ * PopupContent - Controller
  *
  * @export
- * @class DumpController
+ * @class PopupContentController
  */
-export class DumpController {
- public data: string
+export class PopupContentController {
+  public modalApi: any
+
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any, public DummyService: DummyService) {
-    this.$log = $log.getInstance('Dump');
+  constructor(public $log: any, public $window: ng.IWindowService, public $q:ng.IQService) {
+    this.$log = $log.getInstance('PopupContent');
     this.$log.debug('constructor')
   }
 
@@ -77,7 +73,6 @@ export class DumpController {
    */
   public $onInit(): void {
     this.$log.debug('onInit')
-    this.data = this.DummyService.getDump()
   }
 
   /**
@@ -106,16 +101,12 @@ export class DumpController {
    */
   public $postLink(): void {
     this.$log.debug('postLink')
-  }
-  private modalApi: any;
-  public openModal() {
-    this.modalApi.open()
+    this.modalApi.open();
   }
 
   public modalCreated(api){
-    this.modalApi = api
+    this.modalApi = api;
   }
-
   /**
    * Router Life Cycle Hooks
    */
@@ -156,8 +147,9 @@ export class DumpController {
   /**
    * Called by the Router before destroying a Component as part of a navigation.
    */
-  public $routerOnDeactivate(): void {
+  public $routerOnDeactivate(): ng.IPromise<void> {
     this.$log.debug('$routerOnDeactivate', arguments)
+    return this.modalApi.dismiss();
   }
 
   /**

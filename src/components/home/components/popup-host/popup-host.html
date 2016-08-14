@@ -1,0 +1,13 @@
+<modal modal-created="vm.modalCreated(api)" modal-animation="bottom" modal-class="test" navigate-back-on-closing="true">
+  <modal-header show-close="true">
+    <h4 class="modal-title" id="myModalLabel1">Modal title</h4>
+  </modal-header>
+  <modal-body>
+    YOOOOOOOOOOO
+    <ng-outlet></ng-outlet>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-default" ng-click="vm.modalApi.close()">Close</button>
+    <button type="button" class="btn btn-primary" ng-link="['Popup6']">Save changes</button>
+  </modal-footer>
+</modal>
