@@ -55,6 +55,7 @@ export class PopupContent implements ng.IComponentOptions {
  */
 export class PopupContentController {
   public modalApi: any
+  public $router:any
 
   /**
    * @param {*} $log Angular Log Service

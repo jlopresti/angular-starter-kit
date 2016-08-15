@@ -37,7 +37,7 @@ export class Modal implements ng.IComponentOptions {
     modalShown: '&',
     modalHidden: '&',
     modalAnimation: '@',
-    navigateBackOnClosing: '<'
+    navigateOnClosing: '<'
   }
 
   /**
@@ -65,8 +65,9 @@ export class Modal implements ng.IComponentOptions {
  */
 export class ModalController {
   private $modal: any
+  private $router: ng.Router
   private visible: boolean
-  private navigateBackOnClosing: boolean
+  private navigateOnClosing: any[]
   private result: ModalResult
   private modalKeyboard: boolean
   private modalBackdrop: boolean | string
@@ -181,8 +182,8 @@ export class ModalController {
 
     this.visible = false;
     this.modalHidden({reason: this.result});
-    if(this.navigateBackOnClosing && this.result !== ModalResult.Dismiss) {
-      this.$window.history.back();
+    if(!!this.navigateOnClosing && this.result !== ModalResult.Dismiss) {
+      this.$router.navigate(this.navigateOnClosing)
     }
   }
 

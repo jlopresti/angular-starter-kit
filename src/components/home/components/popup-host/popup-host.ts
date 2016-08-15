@@ -106,7 +106,7 @@ export class PopupHostController {
    */
   public $postLink(): void {
     this.$log.debug('postLink')
-
+    this.modalApi.open();
   }
 
   public modalCreated(api){
@@ -141,7 +141,6 @@ export class PopupHostController {
    */
   public $routerOnActivate(toRoute: any, fromRoute: any): void {
     this.$log.debug('$routerOnActivate', toRoute, fromRoute)
-    this.modalApi.open();
   }
 
   /**
