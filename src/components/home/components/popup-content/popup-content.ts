@@ -91,6 +91,7 @@ export class PopupContentController {
    */
   public $onDestroy(): void {
     this.$log.debug('onDestroy')
+    this.modalApi.dismiss();
   }
 
   /**
@@ -148,9 +149,9 @@ export class PopupContentController {
   /**
    * Called by the Router before destroying a Component as part of a navigation.
    */
-  public $routerOnDeactivate(): ng.IPromise<void> {
+  public $routerOnDeactivate(): void {
     this.$log.debug('$routerOnDeactivate', arguments)
-    return this.modalApi.dismiss();
+    this.modalApi.dismiss();
   }
 
   /**

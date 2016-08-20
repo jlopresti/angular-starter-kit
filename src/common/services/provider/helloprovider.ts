@@ -13,7 +13,7 @@ export class GreetingServiceProvider implements ng.IServiceProvider {
 
     /*@ngInject*/
     public $get($http: ng.IHttpService) : IGreetingService {
-        var t = $http.get('http://www.google.fr').then<string>(x => {console.log(x); return "r"});
+        // var t = $http.get('http://www.google.fr').then<string>(x => {console.log(x); return "r"});
         return new GreetingService(this.greeting);
     }
 }

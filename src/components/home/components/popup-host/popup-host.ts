@@ -92,9 +92,9 @@ export class PopupHostController {
    * Called on a controller when its containing scope is destroyed.
    * Use this hook for releasing external resources, watches and event handlers.
    */
-  public $onDestroy(): ng.IPromise<void> {
+  public $onDestroy(): void {
     this.$log.debug('onDestroy')
-    return this.modalApi.dismiss();
+    this.modalApi.dismiss();
   }
 
   /**
@@ -165,8 +165,9 @@ export class PopupHostController {
   /**
    * Called by the Router before destroying a Component as part of a navigation.
    */
-  public $routerOnDeactivate(): ng.IPromise<void> {
-      return this.modalApi.dismiss();
+  public $routerOnDeactivate(): void {
+    this.$log.debug('$routerOnDeactivate', arguments)
+    this.modalApi.dismiss();
   }
 
   /**

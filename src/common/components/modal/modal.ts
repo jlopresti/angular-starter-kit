@@ -65,6 +65,7 @@ export class Modal implements ng.IComponentOptions {
  */
 export class ModalController {
   private $modal: any
+  private $backdrop: any
   private $router: ng.Router
   private visible: boolean
   private navigateOnClosing: any[]
@@ -83,10 +84,10 @@ export class ModalController {
    * @param {*} AppServices App Services Convenience Service
    */
   /*@ngInject*/
-  constructor(public $log: any, public $window: ng.IWindowService, public $q: ng.IQService) {
+   constructor(public $log: any, public $window: ng.IWindowService, public $q: ng.IQService,public $element:ng.IRootElementService,public $attrs:ng.IAttributes) {
     this.$log = $log.getInstance('Modal');
     this.$log.debug('constructor')
-    this.$modal = $('#modal')
+    this.$modal = $element.children('#modal')
     this.modalBackdrop = this.modalBackdrop || true
     this.modalKeyboard = this.modalKeyboard || true
     this.modalAnimation = this.modalAnimation || 'in'
@@ -115,6 +116,7 @@ export class ModalController {
    */
   public $onDestroy(): ng.IPromise<void> {
     this.$log.debug('onDestroy')
+    $('.modal-backdrop').remove()
     return this.hide().then(() => {
           if (this.$modal) {
               this.$modal.off('shown.bs.modal', this.onModalShown)
@@ -191,6 +193,7 @@ export class ModalController {
     let defer = this.$q.defer<void>()
     this.$modal.one('shown.bs.modal', () => {
         this.modalShown();
+        this.$backdrop = $('.modal-backdrop')
         defer.resolve()
     })
     this.$modal.modal();
@@ -199,7 +202,7 @@ export class ModalController {
 
   private hide(): ng.IPromise<ModalResult> {
     let defer = this.$q.defer<ModalResult>()
-    if (this.$modal && this.visible) {
+    if (this.$modal) {
         this.$modal.one('hidden.bs.modal', () => {
             defer.resolve()
         })
