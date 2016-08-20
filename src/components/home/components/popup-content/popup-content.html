@@ -2,7 +2,14 @@
   <modal-header show-close="true">
     <h4 class="modal-title" id="myModalLabel1">Modal2 title</h4>
   </modal-header>
-  <modal-body>HIHIIHIHIHI</modal-body>
+  <modal-body>
+    <ul class="nav nav-tabs">
+      <li role="presentation" router-active><a href="#" ng-link="['Submenu1']">Child</a></li>
+      <li role="presentation" router-active><a href="#" ng-link="['Submenu2']">Profile</a></li>
+      <li role="presentation" router-active><a href="#" ng-link="['Submenu3']">User</a></li>
+    </ul>
+    <ng-outlet></ng-outlet>
+  </modal-body>
   <modal-footer>
     <button type="button" class="btn btn-default" ng-click="vm.modalApi.close()">Close</button>
   </modal-footer>

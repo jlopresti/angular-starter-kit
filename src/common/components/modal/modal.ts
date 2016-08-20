@@ -116,7 +116,6 @@ export class ModalController {
    */
   public $onDestroy(): ng.IPromise<void> {
     this.$log.debug('onDestroy')
-    $('.modal-backdrop').remove()
     return this.hide().then(() => {
           if (this.$modal) {
               this.$modal.off('shown.bs.modal', this.onModalShown)
@@ -193,7 +192,6 @@ export class ModalController {
     let defer = this.$q.defer<void>()
     this.$modal.one('shown.bs.modal', () => {
         this.modalShown();
-        this.$backdrop = $('.modal-backdrop')
         defer.resolve()
     })
     this.$modal.modal();
@@ -202,7 +200,7 @@ export class ModalController {
 
   private hide(): ng.IPromise<ModalResult> {
     let defer = this.$q.defer<ModalResult>()
-    if (this.$modal) {
+    if (this.$modal && this.visible) {
         this.$modal.one('hidden.bs.modal', () => {
             defer.resolve()
         })

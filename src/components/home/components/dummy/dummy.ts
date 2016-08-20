@@ -48,7 +48,7 @@ export class Dummy implements ng.IComponentOptions {
 
   public $routeConfig: any = [
     {path: '/popup/...', name: 'Popup', component: 'popupHost'},
-    {path: '/toto', name: 'Popup6', component: 'popupContent'},
+    {path: '/toto/...', name: 'Popup6', component: 'popupContent'},
     {path: '/', name: 'Popup1', component: 'drum'},
   ]
 }

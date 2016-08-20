@@ -45,6 +45,15 @@ export class PopupContent implements ng.IComponentOptions {
   public $canActivate: any = (): boolean => {
     return true
   }
+
+    public $routeConfig: any = [
+    {path: '/', redirectTo: ['submenu1']},
+    // {path: '/child', name: 'Child', component: 'dummy'},
+    {path: '/submenu1', name: 'Submenu1', component: 'dump'},
+    {path: '/submenu2', name: 'Submenu2', component: 'dump'},
+    {path: '/submenu3', name: 'Submenu3', component: 'drum'}
+  ]
+
 }
 
 /**
@@ -89,9 +98,9 @@ export class PopupContentController {
    * Called on a controller when its containing scope is destroyed.
    * Use this hook for releasing external resources, watches and event handlers.
    */
-  public $onDestroy(): void {
+  public $onDestroy(): ng.IPromise<void> {
     this.$log.debug('onDestroy')
-    this.modalApi.dismiss();
+    return this.modalApi.dismiss();
   }
 
   /**
@@ -141,9 +150,9 @@ export class PopupContentController {
   /**
    * Called by the Router to determine if a Component can be removed as part of a navigation.
    */
-  public $routerCanDeactivate(): boolean {
+  public $routerCanDeactivate(): ng.IPromise<boolean> {
     this.$log.debug('$routerCanDeactivate', arguments)
-    return true
+    return this.modalApi.dismiss().then(() => true);
   }
 
   /**
@@ -151,7 +160,6 @@ export class PopupContentController {
    */
   public $routerOnDeactivate(): void {
     this.$log.debug('$routerOnDeactivate', arguments)
-    this.modalApi.dismiss();
   }
 
   /**
