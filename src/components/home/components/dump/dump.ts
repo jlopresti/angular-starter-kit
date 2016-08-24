@@ -93,8 +93,9 @@ export class DumpController {
    * Called on a controller when its containing scope is destroyed.
    * Use this hook for releasing external resources, watches and event handlers.
    */
-  public $onDestroy(): void {
+  public $onDestroy(): ng.IPromise<void> {
     this.$log.debug('onDestroy')
+    return this.modalApi.dismiss();
   }
 
   /**
@@ -148,9 +149,9 @@ export class DumpController {
   /**
    * Called by the Router to determine if a Component can be removed as part of a navigation.
    */
-  public $routerCanDeactivate(): boolean {
+  public $routerCanDeactivate(): ng.IPromise<boolean> {
     this.$log.debug('$routerCanDeactivate', arguments)
-    return true
+    return this.modalApi.dismiss().then(() => true);
   }
 
   /**
