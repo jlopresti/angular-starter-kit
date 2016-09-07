@@ -2,6 +2,16 @@ var path = require('path');
 var webpack = require('webpack');
 var loaders = require("./webpack-loaders");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var extend = require('extend');
+
+var defaultConfig = require('./src/configs/config.json')
+var envConfig = null;
+var isDev = (process.env.DEV_ENV === 'dev')
+if(isDev){
+  envConfig = require('./src/configs/config.dev.json')
+}else{
+  envConfig = require('./src/configs/config.prd.json')
+}
 
 var PATHS = {
   app: path.join(__dirname, 'src/index.ts'),
@@ -55,7 +65,8 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin("app.css", { allChunks: true }),
         new webpack.DefinePlugin({
-      '__DEV__': process.env.DEV_ENV || false
+      '__DEV__': process.env.DEV_ENV || false,
+      'DataConfig': JSON.stringify(extend(true, {}, defaultConfig, envConfig))
     })
   ]
 };

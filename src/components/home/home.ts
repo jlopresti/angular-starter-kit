@@ -71,7 +71,7 @@ export class HomeController {
    */
   public highchartsNG:any;
   /*@ngInject*/
-  constructor(public $log: any, GreetingService: GreetingService) {
+  constructor(public $log: any, GreetingService: GreetingService, public TestConfig) {
     this.$log = $log.getInstance('Home');
     this.$log.debug('constructor')
     this.$log.debug(GreetingService.getGreeting());

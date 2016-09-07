@@ -6,6 +6,16 @@ var autoprefixer = require('autoprefixer');
 var precss       = require('precss');
 var jadeHotLoader = require.resolve('./loaders/jade-loader');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var extend = require('extend');
+
+var defaultConfig = require('./src/configs/config.json')
+var envConfig = null;
+var isDev = (process.env.DEV_ENV === 'dev')
+if(isDev){
+  envConfig = require('./src/configs/config.dev.json')
+}else{
+  envConfig = require('./src/configs/config.prd.json')
+}
 
 var PATHS = {
   app: path.join(__dirname, 'src/index.ts'),
@@ -86,7 +96,8 @@ module.exports = {
       inject: false
     }),
     new webpack.DefinePlugin({
-      '__DEV__': process.env.DEV_ENV || false
+      '__DEV__': isDev,
+      'DataConfig': JSON.stringify(extend(true, {}, defaultConfig, envConfig))
     })
   ]
 };
