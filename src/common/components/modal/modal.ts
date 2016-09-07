@@ -33,6 +33,7 @@ export class Modal implements ng.IComponentOptions {
     modalBackdrop: '<',
     modalKeyboard: '<',
     modalClass: '@',
+    modalBackdropClass: '@',
     modalCreated: '&',
     modalShown: '&',
     modalHidden: '&',
@@ -65,6 +66,7 @@ export class Modal implements ng.IComponentOptions {
  */
 export class ModalController {
   private $modal: any
+  private $body: any
   private $backdrop: any
   private $router: ng.Router
   private visible: boolean
@@ -74,6 +76,7 @@ export class ModalController {
   private modalBackdrop: boolean | string
   private modalAnimation: string
   private modalClass: string
+  private modalBackdropClass: string
   private modalCreated: Function
   private modalShown: Function
   private modalHidden: Function
@@ -88,6 +91,7 @@ export class ModalController {
     this.$log = $log.getInstance('Modal');
     this.$log.debug('constructor')
     this.$modal = $element.children('#modal')
+    this.$body = $element.parents('body');
     this.modalBackdrop = this.modalBackdrop || true
     this.modalKeyboard = this.modalKeyboard || true
     this.modalAnimation = this.modalAnimation || 'in'
@@ -180,7 +184,7 @@ export class ModalController {
   private onModalHidden = () => {
     this.result = (!this.result || this.result === ModalResult.None)
                 ? ModalResult.Close : this.result;
-
+    this.$body.toggleClass(this.modalBackdropClass)
     this.visible = false;
     this.modalHidden({reason: this.result});
     if(!!this.navigateOnClosing && this.result !== ModalResult.Dismiss) {
@@ -190,6 +194,9 @@ export class ModalController {
 
   private show(): ng.IPromise<void> {
     let defer = this.$q.defer<void>()
+    this.$modal.one('show.bs.modal', () => {
+        this.$body.toggleClass(this.modalBackdropClass)
+    })
     this.$modal.one('shown.bs.modal', () => {
         this.modalShown();
         defer.resolve()
