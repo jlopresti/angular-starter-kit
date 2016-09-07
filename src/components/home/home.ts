@@ -70,11 +70,18 @@ export class HomeController {
    * @param {*} AppServices App Services Convenience Service
    */
   public highchartsNG:any;
+  private testdata: any
+
   /*@ngInject*/
   constructor(public $log: any, GreetingService: GreetingService, public TestConfig) {
     this.$log = $log.getInstance('Home');
     this.$log.debug('constructor')
     this.$log.debug(GreetingService.getGreeting());
+    this.testdata = {
+      test : "hel",
+      obj:{ id:213},
+      func: (tutu) => { alert(tutu)}
+    }
   }
   public $canReuseCachedData(){
     return false;

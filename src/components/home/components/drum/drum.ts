@@ -30,7 +30,10 @@ export class Drum implements ng.IComponentOptions {
    * @type {Object}
    */
   public bindings: { [binding: string]: string; } = {
-    $router: '<'
+    $router: '<',
+    test:'@',
+    obj:'<',
+    func:'&',
   }
 
   /**
@@ -60,6 +63,8 @@ export class Drum implements ng.IComponentOptions {
  */
 export class DrumController {
  public data: string
+ private func: Function
+ private test: string
   /**
    * @param {*} $log Angular Log Service
    * @param {*} AngularServices Angular Services Convenience Service
@@ -108,6 +113,10 @@ export class DrumController {
     this.$log.debug('postLink')
   }
 
+  public alert(){
+    alert(this.test)
+    this.func({tutu:'zozo'})
+  }
 
   /**
    * Router Life Cycle Hooks
