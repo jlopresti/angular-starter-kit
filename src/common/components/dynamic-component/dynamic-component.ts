@@ -74,14 +74,14 @@ export class DynamicComponentController {
     for (const key of Object.keys(this.data)) {
       if(this.data[key] instanceof Function) {
         var args = this.data[key].toString().match(/function\s*(.*?)\s*{/)[1]
-        componentAttributes += `${key}="${key}${args}" `
+        componentAttributes += `${this.dashCase(key)}="${key}${args}" `
       }else {
         var startBrace = this.data[key] instanceof Object ? '' : '{{'
         var endBrace = this.data[key] instanceof Object ? '' : '}}'
-        componentAttributes += `${key}="${startBrace}::${key}${endBrace}" `
+        componentAttributes += `${this.dashCase(key)}="${startBrace}::${key}${endBrace}" `
       }
     }
-    var html = '<' + this.dashCase(this.component) + ' ' + componentAttributes + ' func="func(t)"></' + this.dashCase(this.component) + '>';
+    var html = '<' + this.dashCase(this.component) + ' ' + componentAttributes + '></' + this.dashCase(this.component) + '>';
     this.$element.append(this.$compile(html)(newScope));
   }
 

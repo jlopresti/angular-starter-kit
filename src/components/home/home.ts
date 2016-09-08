@@ -80,6 +80,7 @@ export class HomeController {
     this.testdata = {
       test : "hel",
       obj:{ id:213},
+      dashObj : (tutu) => { alert(tutu)},
       func: (tutu) => { alert(tutu)}
     }
   }

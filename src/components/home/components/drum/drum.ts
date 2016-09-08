@@ -34,6 +34,7 @@ export class Drum implements ng.IComponentOptions {
     test:'@',
     obj:'<',
     func:'&',
+    dashObj:'&'
   }
 
   /**
@@ -64,6 +65,7 @@ export class Drum implements ng.IComponentOptions {
 export class DrumController {
  public data: string
  private func: Function
+ private dashObj: Function
  private test: string
   /**
    * @param {*} $log Angular Log Service
@@ -116,6 +118,7 @@ export class DrumController {
   public alert(){
     alert(this.test)
     this.func({tutu:'zozo'})
+    this.dashObj({tutu:'zizi'})
   }
 
   /**
